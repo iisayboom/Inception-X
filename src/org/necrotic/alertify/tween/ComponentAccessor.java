@@ -14,6 +14,7 @@ public class ComponentAccessor implements TweenAccessor<Component> {
 
 	/**
 	 * Sets the Component's X and Y positions.
+	 * test
 	 */
 	public static final int POSITION_XY = 0;
 
