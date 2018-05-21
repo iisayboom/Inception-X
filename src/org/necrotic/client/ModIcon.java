@@ -8,7 +8,7 @@ public enum ModIcon {
 	OWNER(830, 3),
 	DEVELOPER(831, 4),
 	CONTRIBUTOR(833, 6),
-	MEMBER(834, 7),
+	MEMBER(840, 7),
 	YOUTUBER(1218, 8)
 	;
 	

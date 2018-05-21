@@ -23,15 +23,21 @@ public class SpriteLoader {
 	 * @param sprite
 	 */
 	private static void createSprite(SpriteLoader sprite) {
-		
-		File directory = new File(Signlink.getCacheDirectory().toString() + "/sprites"); if
-			(!directory.exists()) { directory.mkdir(); } FileUtilities.WriteFile(directory.getAbsolutePath() +
-					System.getProperty("file.separator") + sprite.id + ".png",
-					sprite.spriteData);
+
+		dumpSprites(sprite);
 
 		sprites[sprite.id] = new Sprite(sprite.spriteData);
 		sprites[sprite.id].drawOffsetX = sprite.drawOffsetX;
 		sprites[sprite.id].drawOffsetY = sprite.drawOffsetY;
+	}
+
+	private static void dumpSprites(SpriteLoader sprite) {
+		File directory = new File(Signlink.getCacheDirectory().toString() + "/sprites");
+		if
+			(!directory.exists()) { directory.mkdir(); }
+		FileUtilities.WriteFile(directory.getAbsolutePath() +
+				System.getProperty("file.separator") + sprite.id + ".png",
+				sprite.spriteData);
 	}
 
 	/**

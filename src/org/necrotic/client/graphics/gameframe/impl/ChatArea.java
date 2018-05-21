@@ -327,7 +327,8 @@ public class ChatArea extends GameFrame {
 							int substringLength = Client.getClient().getPrefixSubstringLength(name);
 							name = name.substring(substringLength);
 							playerRights = client.getPrefixRights(prefixName.substring(0, prefixName.indexOf(name)), new Boolean(substringLength == 6));
-							if(playerRights > 11) {
+
+							if(playerRights == 14) {
 								ironman = playerRights - 11;
 								playerRights = 0;
 							}
@@ -389,11 +390,14 @@ public class ChatArea extends GameFrame {
 							if (client.chatTypeView == 1 || client.chatTypeView == 0 || playerRights > 0 && playerRights <= 4 && playerRights != 3) {
 								if (positionY > 0 && positionY < 210) {
 									int xPos = 8;
-
-									if (playerRights > 0) {
-										client.modIcons[playerRights].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
-										xPos += 11;
-									} else if(playerRights == 0 && ironman > 0) {
+                                    //System.out.println(playerRights);
+									if (playerRights > 0 && playerRights <= 10 ) {
+                                        client.modIcons[playerRights].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+                                        xPos += 11;
+                                    } else if (playerRights >= 11) {
+                                        client.donatorIcons[playerRights - 11].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+                                        xPos += 11;
+                                    }else if(playerRights == 0 && ironman > 0) {
 										client.modIcons[11 + ironman].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
 										xPos += 10;
 									}
@@ -433,7 +437,10 @@ public class ChatArea extends GameFrame {
 									if (playerRights > 0) {
 										client.modIcons[playerRights].drawTransparentSprite(xPos + getOffSetX(), positionY - 11 + getOffSetY(), 255);
 										xPos += 11;
-									} else if(playerRights == 0 && ironman > 0) {
+									} else if (playerRights > 11) {
+                                        client.donatorIcons[playerRights - 11].drawTransparentSprite(xPos + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+                                        xPos += 11;
+                                    }else if(playerRights == 0 && ironman > 0) {
 										client.modIcons[11 + ironman].drawTransparentSprite(xPos + getOffSetX(), positionY - 11 + getOffSetY(), 255);
 										xPos += 10;
 									}
@@ -522,9 +529,11 @@ public class ChatArea extends GameFrame {
 
 					int drawOffsetX = getOffSetX() + getOffSetX() + 8;
 					int drawOffsetY = getOffSetY() + 133;
-
+                    //System.out.println("client playerrights: " + client.myRights);
+                    //System.out.println("client ironman rights: " + client.ironman);
 					if (client.myRights > 0) {
 						int crown = client.myRights;
+                        //System.out.println("my right: " + crown);
 						int yOffset = 0;
 						if (crown == 1 || crown == 2 || crown == 3) {
 							yOffset = 1;
@@ -532,11 +541,17 @@ public class ChatArea extends GameFrame {
 						if(crown == 4) {
 							yOffset--;
 						}
-						client.modIcons[crown].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11 + yOffset, 255);
-						drawOffsetX += 11;
-					} else if(client.myRights == 0 && client.ironman > 0) {
-						client.modIcons[11 + client.ironman].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11, 255);
-						drawOffsetX += 10;
+						if(client.myRights >= 11) {
+                            client.donatorIcons[client.myRights - 11].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11 + yOffset, 255);
+                            drawOffsetX += 11;
+                        } else {
+                            client.modIcons[crown].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11 + yOffset, 255);
+                            drawOffsetX += 11;
+                        }
+					} else if(client.myRights == 0 && client.ironman > 0) { //check client.ironman, is 3 terwijl die 0 moet zijn
+						//client.modIcons[11 + client.ironman].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11, 255);
+                        //client.modIcons[2].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11, 255);
+						//drawOffsetX += 10;
 					}
 
 					if (Client.myPlayer.loyaltyTitle != null && !Client.myPlayer.loyaltyTitle.isEmpty()) {

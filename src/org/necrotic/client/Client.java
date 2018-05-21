@@ -1280,6 +1280,7 @@ public class Client extends GameRenderer {
 	public int minimapRotation;
 	public int minimapZoom;
 	public final Sprite[] modIcons;
+	public final Sprite[] donatorIcons;
 	public MouseDetection mouseDetection;
 	private int mouseInvInterfaceIndex;
 	private Sprite multiOverlay;
@@ -1505,6 +1506,7 @@ public class Client extends GameRenderer {
 		anInt1211 = 78;
 		promptInput = "";
 		modIcons = new Sprite[14];
+		donatorIcons = new Sprite[8];
 		tabID = 3;
 		setInputTaken(false);
 		mapImagePixelCutRight = new int[152];
@@ -15822,43 +15824,8 @@ public class Client extends GameRenderer {
 		getDocumentBaseHost();
 		
 		/** CACHE DOWNLOADS **/
-		for(int i = 0; i < loadingImages.length; i++) {
-			File dir = new File(Signlink.getCacheDirectory() + i + ".png");
-			if(!dir.exists()) {
-				if (i == 0) {
-					boolean downloadedImage = HttpDownloadUtility.downloadFile("https://dropbox.com/s/3i0vt407ua5iyg6/0.png",  Signlink.getCacheDirectory());
-					if(!downloadedImage) {
-						HttpDownloadUtility.downloadFile("https://dropbox.com/s/3i0vt407ua5iyg6",  Signlink.getCacheDirectory());
-					}
-				}
-				
-				if (i == 1) {
-					boolean downloadedImage = HttpDownloadUtility.downloadFile("https://www.dropbox.com/s/gd7o0fj14os7205/1.png",  Signlink.getCacheDirectory());
-					if(!downloadedImage) {
-						HttpDownloadUtility.downloadFile("https://www.dropbox.com/s/gd7o0fj14os7205/1.png",  Signlink.getCacheDirectory());
-					}
-				}
-				
-				if (i == 2) {
-					boolean downloadedImage = HttpDownloadUtility.downloadFile("https://www.dropbox.com/s/azbkk1fidvinbq4/2.png",  Signlink.getCacheDirectory());
-					if(!downloadedImage) {
-						HttpDownloadUtility.downloadFile("https://www.dropbox.com/s/azbkk1fidvinbq4/2.png",  Signlink.getCacheDirectory());
-					}
-				}
-				
-				if (i == 3) {
-					boolean downloadedImage = HttpDownloadUtility.downloadFile("https://www.dropbox.com/s/mx3d8ljo10hgrm6/3.png",  Signlink.getCacheDirectory());
-					if(!downloadedImage) {
-						HttpDownloadUtility.downloadFile("https://www.dropbox.com/s/mx3d8ljo10hgrm6/3.png",  Signlink.getCacheDirectory());
-					}
-				}
-				
-			}
-			try {
-				loadingImages[i] = ImageIO.read(dir);
-			} catch(Exception e){}
-		}		
-		
+		downloadImagesBeforeCache();
+
 		if(CacheDownloader.updatedCache()) {
 			if (super.mainFrame != null) {
 				super.mainFrame.setClientIcon();
@@ -15915,6 +15882,7 @@ public class Client extends GameRenderer {
 			mapIcon = new Sprite(mediaArchive, "mapfunction", 5);
 			SpriteLoader.loadSprites();
 			cacheSprite = SpriteLoader.sprites;
+			//System.out.println("cachesprites: " + cacheSprite);
 			SpriteLoader.sprites = null;
 			////drawSmoothLoading(40, "Unpacked media!");
 			mapBack = new Background(mediaArchive, "mapback", 0);
@@ -16082,8 +16050,15 @@ public class Client extends GameRenderer {
 			}
 
 			for (int l4 = 0; l4 < modIcons.length; l4++) {
+//				modIcons[l4] = cacheSprite[1219+l4];
 				modIcons[l4] = cacheSprite[827+l4];
 			}
+			System.out.println("donatoricon length: " + donatorIcons.length);
+			for (int i = 0; i < donatorIcons.length; i++) {
+//				modIcons[l4] = cacheSprite[1219+l4];
+				donatorIcons[i] = cacheSprite[827+i];
+			}
+
 			multiOverlay = cacheSprite[1025];
 			
 			Sprite sprite = new Sprite(mediaArchive, "screenframe", 0);
@@ -16224,6 +16199,45 @@ public class Client extends GameRenderer {
 		}
 		
 		loadingError = true;
+	}
+
+	private void downloadImagesBeforeCache() {
+		for(int i = 0; i < loadingImages.length; i++) {
+			File dir = new File(Signlink.getCacheDirectory() + i + ".png");
+			if(!dir.exists()) {
+				if (i == 0) {
+					boolean downloadedImage = HttpDownloadUtility.downloadFileWithName("0.png","https://inceptionx289325608.files.wordpress.com/2018/05/0.png",  Signlink.getCacheDirectory());
+					if(!downloadedImage) {
+						HttpDownloadUtility.downloadFileWithName("0.png","https://i.imgur.com/7PwBNSM.png?dl=1",  Signlink.getCacheDirectory());
+					}
+				}
+
+				if (i == 1) {
+					boolean downloadedImage = HttpDownloadUtility.downloadFileWithName("1.png","https://www.dropbox.com/s/gd7o0fj14os7205/1.png",  Signlink.getCacheDirectory());
+					if(!downloadedImage) {
+						HttpDownloadUtility.downloadFileWithName("1.png","https://www.dropbox.com/s/gd7o0fj14os7205/1.png?dl=1",  Signlink.getCacheDirectory());
+					}
+				}
+
+				if (i == 2) {
+					boolean downloadedImage = HttpDownloadUtility.downloadFileWithName("2.png","https://www.dropbox.com/s/azbkk1fidvinbq4/2.png",  Signlink.getCacheDirectory());
+					if(!downloadedImage) {
+						HttpDownloadUtility.downloadFileWithName("2.png","https://www.dropbox.com/s/azbkk1fidvinbq4/2.png?dl=1",  Signlink.getCacheDirectory());
+					}
+				}
+
+				if (i == 3) {
+					boolean downloadedImage = HttpDownloadUtility.downloadFileWithName("3.png","https://www.dropbox.com/s/mx3d8ljo10hgrm6/3.png",  Signlink.getCacheDirectory());
+					if(!downloadedImage) {
+						HttpDownloadUtility.downloadFileWithName("3.png","https://www.dropbox.com/s/mx3d8ljo10hgrm6/3.png?dl=1",  Signlink.getCacheDirectory());
+					}
+				}
+
+			}
+			try {
+				loadingImages[i] = ImageIO.read(dir);
+			} catch(Exception e){}
+		}
 	}
 
 	public void dumpArchive(int archive) {
