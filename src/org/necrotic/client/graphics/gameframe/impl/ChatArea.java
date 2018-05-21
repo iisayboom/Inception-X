@@ -530,7 +530,7 @@ public class ChatArea extends GameFrame {
 					int drawOffsetX = getOffSetX() + getOffSetX() + 8;
 					int drawOffsetY = getOffSetY() + 133;
                     //System.out.println("client playerrights: " + client.myRights);
-                    //System.out.println("client ironman rights: " + client.ironman);
+                    //System.out.println("client gamemode rights: " + client.gamemode);
 					if (client.myRights > 0) {
 						int crown = client.myRights;
                         //System.out.println("my right: " + crown);
@@ -548,10 +548,11 @@ public class ChatArea extends GameFrame {
                             client.modIcons[crown].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11 + yOffset, 255);
                             drawOffsetX += 11;
                         }
-					} else if(client.myRights == 0 && client.ironman > 0) { //check client.ironman, is 3 terwijl die 0 moet zijn
-						//client.modIcons[11 + client.ironman].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11, 255);
-                        //client.modIcons[2].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11, 255);
-						//drawOffsetX += 10;
+					}
+
+					if(client.gamemode > 1 && (client.myRights == 0 || client.myRights > 11)) {
+						client.modIcons[9 + client.gamemode].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11, 255);
+						drawOffsetX += 10;
 					}
 
 					if (Client.myPlayer.loyaltyTitle != null && !Client.myPlayer.loyaltyTitle.isEmpty()) {

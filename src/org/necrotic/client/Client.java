@@ -1287,7 +1287,7 @@ public class Client extends GameRenderer {
 	private int musicVolume = 255;
 	private final int myPlayerIndex;
 	public int myRights;
-	public int ironman;
+	public int gamemode;
 	private String name;
 	public RSFontSystem newSmallFont, newRegularFont, newBoldFont;
 	private int nextSong;
@@ -1505,7 +1505,7 @@ public class Client extends GameRenderer {
 		sound = new int[50];
 		anInt1211 = 78;
 		promptInput = "";
-		modIcons = new Sprite[14];
+		modIcons = new Sprite[15];
 		donatorIcons = new Sprite[8];
 		tabID = 3;
 		setInputTaken(false);
@@ -11952,8 +11952,8 @@ public class Client extends GameRenderer {
 						myPlayer.anInt1531 = i3;
 						myPlayer.textCycle = 150;
 						int prefixRights = myRights;
-						if(prefixRights == 0 && ironman > 0) {
-							prefixRights = 11 + ironman;
+						if(prefixRights == 0 && gamemode > 0) {
+							prefixRights = 11 + gamemode;
 						}
 						pushMessage(myPlayer.textSpoken, 2, getPrefix(prefixRights) + myPlayer.name, myPlayer.loyaltyTitle, myPlayer.loyaltyColor, myPlayer.loyaltyPosition);
 
@@ -13598,7 +13598,7 @@ public class Client extends GameRenderer {
 					return true;
 					
 				case 112:
-					ironman = getInputBuffer().getUnsignedByte();
+					gamemode = getInputBuffer().getUnsignedByte();
 					pktType = -1;
 					return true;
 
@@ -16050,13 +16050,13 @@ public class Client extends GameRenderer {
 			}
 
 			for (int l4 = 0; l4 < modIcons.length; l4++) {
-//				modIcons[l4] = cacheSprite[1219+l4];
-				modIcons[l4] = cacheSprite[827+l4];
+				//modIcons[l4] = cacheSprite[1219+l4];
+				modIcons[l4] = cacheSprite[828+l4];
 			}
 			System.out.println("donatoricon length: " + donatorIcons.length);
 			for (int i = 0; i < donatorIcons.length; i++) {
-//				modIcons[l4] = cacheSprite[1219+l4];
-				donatorIcons[i] = cacheSprite[827+i];
+				//modIcons[l4] = cacheSprite[1219+l4];
+				donatorIcons[i] = cacheSprite[1219+i];
 			}
 
 			multiOverlay = cacheSprite[1025];
