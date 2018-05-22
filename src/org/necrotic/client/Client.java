@@ -7927,7 +7927,12 @@ public class Client extends GameRenderer {
 					}
 
 					if (rights != 0) {
-						modIcons[rights].drawTransparentSprite(xOffset, yOffset - 12, 255);
+						System.out.println("Rights: " + rights);
+						if (rights < 11) {
+							modIcons[rights].drawTransparentSprite(xOffset, yOffset - 12, 255);
+						} else {
+							donatorIcons[rights - 11].drawTransparentSprite(xOffset, yOffset - 12, 255);
+						}
 						xOffset += modIcons[rights].maxWidth + 2;
 					}
 
@@ -16050,12 +16055,9 @@ public class Client extends GameRenderer {
 			}
 
 			for (int l4 = 0; l4 < modIcons.length; l4++) {
-				//modIcons[l4] = cacheSprite[1219+l4];
-				modIcons[l4] = cacheSprite[828+l4];
+				modIcons[l4] = cacheSprite[827+l4];
 			}
-			System.out.println("donatoricon length: " + donatorIcons.length);
 			for (int i = 0; i < donatorIcons.length; i++) {
-				//modIcons[l4] = cacheSprite[1219+l4];
 				donatorIcons[i] = cacheSprite[1219+i];
 			}
 
