@@ -36,7 +36,8 @@ public class CacheDownloader {
 */
 	
 	 private static final String CACHE_FILE_NAME = "NecroticCache.zip";
-	 private static final String CACHE_URL = "https://www.dropbox.com/s/nzgib5u6bjgtvwf/NecroticCache.zip?dl=1";
+	 //private static final String CACHE_URL = "https://www.dropbox.com/s/nzgib5u6bjgtvwf/NecroticCache.zip?dl=1";
+	 private static final String CACHE_URL = "https://www.dropbox.com/s/xwi7ja0jrw6jgqn/NecroticCache.zip?dl=1";
 	 private static final String NEWEST_VERSION_FILE_URL = "https://www.dropbox.com/s/pwed3tjhs1rnio1/cache_version.txt?dl=1";
 	 private static final String CURRENT_VERSION_FILE = "cache_version.txt";
 	 public static final String URL_TO_LOADING_IMAGES = "https://www.dropbox.com/sh/jvwjs3523faxi7o/AAAr4XNifqvXmiIpPzhvHL-Ta/";

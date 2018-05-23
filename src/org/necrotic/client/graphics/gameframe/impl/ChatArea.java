@@ -242,29 +242,6 @@ public class ChatArea extends GameFrame {
 			}
 
 			Rasterizer.lineOffsets = client.anIntArray1180;
-			/*
-			 * if(screenMode != ScreenMode.FIXED && !componentHidden()) {
-			 * if((client.mouseX >= getOffSetX() && client.mouseX <=
-			 * getOffSetX() + getWidth() && client.mouseY >= resizeY - 8 &&
-			 * client.mouseY <= resizeY + 8) && client.getClickType() ==
-			 * ClickType.DRAG) { isDragging = true; } if(client.getClickType()
-			 * != ClickType.DRAG) isDragging = false;
-			 *
-			 * if(isDragging) { resizeY = client.mouseY;
-			 *
-			 * if(resizeY <= 20) resizeY = 20;
-			 *
-			 * if(resizeY <= getyPos() - 271) resizeY = getyPos() - 271;
-			 *
-			 * if(resizeY >= getyPos() - 10) resizeY = getyPos() - 10;
-			 *
-			 * if(getHeight() < 400 || getHeight() >= 150) setHeight(getyPos() +
-			 * 150 - resizeY - 10);
-			 *
-			 * //System.out.println("YPos: "+getyPos()+ " Height: "+
-			 * getHeight()+" ResizeY: "+resizeY); //System.out.println(getyPos()
-			 * - 400); } }
-			 */
 
 			if (screenMode == ScreenMode.FIXED) {
 				Client.cacheSprite[3].drawSprite(getOffSetX(), getOffSetY());
@@ -390,29 +367,37 @@ public class ChatArea extends GameFrame {
 							if (client.chatTypeView == 1 || client.chatTypeView == 0 || playerRights > 0 && playerRights <= 4 && playerRights != 3) {
 								if (positionY > 0 && positionY < 210) {
 									int xPos = 8;
-									if(client.myRights > 0 && client.gamemode <= 1) {
-										if (client.myRights >= 11) {
 
-											client.donatorIcons[client.myRights - 11].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+									if(playerRights > 0 && client.gamemode <= 1) {
+										if (playerRights >= 11) {
+											client.donatorIcons[playerRights - 11].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
 											xPos += 11;
 										} else {
-											client.modIcons[client.myRights].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+											client.modIcons[playerRights].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
 											xPos += 11;
 										}
 									} else {
-										if(client.gamemode == 2 && (client.myRights == 0 || client.myRights > 11)) {
+										if(client.gamemode == 2 && (playerRights == 0 || playerRights > 11)) {
 											client.modIcons[12].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
 											xPos += 10;
 										}
 
-										if(client.gamemode == 3 && (client.myRights == 0 || client.myRights > 11)) {
+										if(client.gamemode == 3 && (playerRights == 0 || playerRights > 11)) {
 											client.modIcons[13].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
 											xPos += 10;
 										}
 									}
 
 
-
+									/*
+									if (playerRights > 0) {
+										client.modIcons[playerRights].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+										xPos += 11;
+									} else if(playerRights == 0 && ironman > 0) {
+										client.modIcons[11 + ironman].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+										xPos += 10;
+									}
+									*/
 
 									String title = client.chatTitles[i] == null || client.chatTitles[i].isEmpty() ? "" : client.chatTitles[i];
 									title = title.trim();

@@ -16059,6 +16059,7 @@ public class Client extends GameRenderer {
 			}
 			for (int i = 0; i < donatorIcons.length; i++) {
 				donatorIcons[i] = cacheSprite[1219+i];
+				//donatorIcons[i] = cacheSprite[827+i];
 			}
 
 			multiOverlay = cacheSprite[1025];
