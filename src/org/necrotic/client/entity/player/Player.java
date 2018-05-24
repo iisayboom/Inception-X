@@ -44,6 +44,7 @@ public final class Player extends Entity {
 	public int hintIcon;
 	public boolean skulled;
 	public int playerRights;
+	public int gamemode;
 	
 	/**
 	 * The text of the loyalty title

@@ -43,18 +43,18 @@ public class ChatArea extends GameFrame {
 		private final int[] channelXCoords = { 5, 62, 119, 176, 233, 290, 347,
 				430 };
 		private final String[] chatStatus = { "On", "Friends", "Off", "Hide",
-		"All" };
+				"All" };
 		private final int[] chatTextColor = { 65280, 0xffff00, 0xff0000, 65535,
 				0xffff00, 65280 };
 		private final String[][] chatMenuText = {
 				{ "View All" },
 				{ "View Game" },
 				{ "Hide Public", "Off Public", "Friends Public", "On Public",
-				"View Public" },
+						"View Public" },
 				{ "Off Private", "Friends Private", "On Private",
-				"View Private" },
+						"View Private" },
 				{ "Off Clan chat", "Friends Clan chat", "On Clan chat",
-				"View Clan chat" },
+						"View Clan chat" },
 				{ "Off Trade", "Friends Trade", "On Trade", "View Trade" },
 				{ "Off Duel", "Friends Duel", "On Duel", "View Duel" } };
 		private final int[][] actions = { { 999 }, { 998 },
@@ -68,43 +68,43 @@ public class ChatArea extends GameFrame {
 			}
 
 			switch (client.cButtonCPos) {
-			case 0:
-			case 1:
-			case 2:
-			case 3:
-			case 4:
-			case 5:
-			case 6:
-				Client.cacheSprite[1].drawSprite(getOffSetX() + channelXCoords[client.cButtonCPos], getOffSetY() + 143);
-				break;
+				case 0:
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+				case 5:
+				case 6:
+					Client.cacheSprite[1].drawSprite(getOffSetX() + channelXCoords[client.cButtonCPos], getOffSetY() + 143);
+					break;
 			}
 			if (client.cButtonHPos == client.cButtonCPos) {
 				switch (client.cButtonHPos) {
-				case 0:
-				case 1:
-				case 2:
-				case 3:
-				case 4:
-				case 5:
-				case 6:
-					Client.cacheSprite[2].drawSprite(getOffSetX() + channelXCoords[client.cButtonHPos], getOffSetY() + 143);
-					break;
-				case 7:
-					break;
+					case 0:
+					case 1:
+					case 2:
+					case 3:
+					case 4:
+					case 5:
+					case 6:
+						Client.cacheSprite[2].drawSprite(getOffSetX() + channelXCoords[client.cButtonHPos], getOffSetY() + 143);
+						break;
+					case 7:
+						break;
 				}
 			} else {
 				switch (client.cButtonHPos) {
-				case 0:
-				case 1:
-				case 2:
-				case 3:
-				case 4:
-				case 5:
-				case 6:
-					Client.cacheSprite[0].drawSprite(getOffSetX() + channelXCoords[client.cButtonHPos], getOffSetY() + 143);
-					break;
-				case 7:
-					break;
+					case 0:
+					case 1:
+					case 2:
+					case 3:
+					case 4:
+					case 5:
+					case 6:
+						Client.cacheSprite[0].drawSprite(getOffSetX() + channelXCoords[client.cButtonHPos], getOffSetY() + 143);
+						break;
+					case 7:
+						break;
 				}
 			}
 
@@ -135,7 +135,7 @@ public class ChatArea extends GameFrame {
 			 *
 			 *
 			 *
-			 * 
+			 *
 			 * clan chatmode to add
 			 */
 					0 : i == 3 ? client.tradeMode : client.duelStatus;
@@ -297,18 +297,16 @@ public class ChatArea extends GameFrame {
 						int positionY = 70 - messageY * 14 + Client.anInt1089 + 6;
 						String name = client.chatNames[i];
 						String prefixName = name;
-						byte playerRights = 0;
-						int ironman = 0;
+						byte otherPeoplesRights = 0;
+						//boolean ironman = playerRights == 50 ? true:false;
+						//boolean hcIron = false;
 
+						//@cr1@Javatar
+						//@c12@Normal
 						if (name != null && name.indexOf("@") == 0) {
 							int substringLength = Client.getClient().getPrefixSubstringLength(name);
 							name = name.substring(substringLength);
-							playerRights = client.getPrefixRights(prefixName.substring(0, prefixName.indexOf(name)), new Boolean(substringLength == 6));
-
-							if(playerRights == 14) {
-								ironman = playerRights - 11;
-								playerRights = 0;
-							}
+							otherPeoplesRights = client.getPrefixRights(prefixName.substring(0, prefixName.indexOf(name)), substringLength == 6);
 						}
 
 						// Don't show Private messages in "All" if split chat is
@@ -364,28 +362,30 @@ public class ChatArea extends GameFrame {
 						 * Normal chat
 						 */
 						if ((chatType == 1 || chatType == 2) && (chatType == 1 || client.publicChatMode == 0 || client.publicChatMode == 1 && client.isFriendOrSelf(name))) {
-							if (client.chatTypeView == 1 || client.chatTypeView == 0 || playerRights > 0 && playerRights <= 4 && playerRights != 3) {
+							if (client.chatTypeView == 1 || client.chatTypeView == 0 || otherPeoplesRights > 0 && otherPeoplesRights <= 4 && otherPeoplesRights != 3) {
 								if (positionY > 0 && positionY < 210) {
 									int xPos = 8;
-
-									if(playerRights > 0 && client.gamemode <= 1) {
-										if (playerRights >= 11) {
-											client.donatorIcons[playerRights - 11].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
-											xPos += 11;
-										} else {
-											client.modIcons[playerRights].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
-											xPos += 11;
-										}
-									} else {
-										if(client.gamemode == 2 && (playerRights == 0 || playerRights > 11)) {
-											client.modIcons[12].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
-											xPos += 10;
-										}
-
-										if(client.gamemode == 3 && (playerRights == 0 || playerRights > 11)) {
-											client.modIcons[13].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
-											xPos += 10;
-										}
+									/*
+									if(playerRights == 14 && client.myRights == 0) {
+										ironman = true;
+										playerRights = 0;
+									} else if (playerRights == 13 && client.myRights == 0) {
+										hcIron = true;
+										playerRights = 0;
+									}
+									*/
+									if (otherPeoplesRights >= 11 && otherPeoplesRights <= 18) {
+										client.donatorIcons[otherPeoplesRights - 11].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+										xPos += 11;
+									} else if(otherPeoplesRights >= 1 && otherPeoplesRights <= 10) {
+										client.modIcons[otherPeoplesRights].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+										xPos += 11;
+									} else if((otherPeoplesRights >= 19 && otherPeoplesRights <= 26) || otherPeoplesRights == 35) {
+										client.modIcons[13].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+										xPos += 10;
+									} else if(otherPeoplesRights > 26 || otherPeoplesRights == 36) {
+										client.modIcons[12].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+										xPos += 10;
 									}
 
 
@@ -431,24 +431,18 @@ public class ChatArea extends GameFrame {
 									textDrawingArea.drawBasicString("From", xPos + getOffSetX(), positionY + getOffSetY(), screenMode == ScreenMode.FIXED ? 0 : 0xffffff, screenMode == ScreenMode.FIXED ? -1 : 0, true);
 									xPos += textDrawingArea.getTextWidth("From ");
 
-									if(playerRights > 0 && client.gamemode <= 1) {
-										if (playerRights >= 11) {
-											client.donatorIcons[playerRights - 11].drawTransparentSprite(xPos + getOffSetX(), positionY - 11 + getOffSetY(), 255);
-											xPos += 11;
-										} else {
-											client.modIcons[playerRights].drawTransparentSprite(xPos + getOffSetX(), positionY - 11 + getOffSetY(), 255);
-											xPos += 11;
-										}
-									} else {
-										if(client.gamemode == 2 && (client.myRights == 0 || client.myRights > 11)) {
-											client.modIcons[12].drawTransparentSprite(xPos + getOffSetX(), positionY - 11 + getOffSetY(), 255);
-											xPos += 10;
-										}
-
-										if(client.gamemode == 3 && (client.myRights == 0 || client.myRights > 11)) {
-											client.modIcons[13].drawTransparentSprite(xPos + getOffSetX(), positionY - 11 + getOffSetY(), 255);
-											xPos += 10;
-										}
+									if (otherPeoplesRights >= 11 && otherPeoplesRights <= 18) {
+										client.donatorIcons[otherPeoplesRights - 11].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+										xPos += 11;
+									} else if(otherPeoplesRights >= 1 && otherPeoplesRights <= 10) {
+										client.modIcons[otherPeoplesRights].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+										xPos += 11;
+									} else if(otherPeoplesRights >= 19 && otherPeoplesRights <= 26 || otherPeoplesRights == 35) {
+										client.modIcons[12].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+										xPos += 10;
+									} else if(otherPeoplesRights > 26 || otherPeoplesRights == 36) {
+										client.modIcons[13].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+										xPos += 10;
 									}
 
 									textDrawingArea.drawBasicString(name + ":", xPos + getOffSetX(), positionY + getOffSetY(), screenMode == ScreenMode.FIXED ? 0 : 0xffffff, screenMode == ScreenMode.FIXED ? -1 : 0, true);
@@ -535,11 +529,10 @@ public class ChatArea extends GameFrame {
 
 					int drawOffsetX = getOffSetX() + getOffSetX() + 8;
 					int drawOffsetY = getOffSetY() + 133;
-                    //System.out.println("client playerrights: " + client.myRights);
-                    //System.out.println("client gamemode rights: " + client.gamemode);
+
 					if (client.myRights > 0 && client.gamemode <= 1) {
 						int crown = client.myRights;
-                        //System.out.println("my right: " + crown);
+						//System.out.println("my right: " + crown);
 						int yOffset = 0;
 						if (crown == 1 || crown == 2 || crown == 3) {
 							yOffset = 1;
@@ -547,16 +540,22 @@ public class ChatArea extends GameFrame {
 						if(crown == 4) {
 							yOffset--;
 						}
-						if(client.myRights >= 11) {
-                            client.donatorIcons[client.myRights - 11].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11 + yOffset, 255);
-                            drawOffsetX += 11;
-                        } else {
-                            client.modIcons[crown].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11 + yOffset, 255);
-                            drawOffsetX += 11;
-                        }
+
+						if (client.myRights >= 11 && client.myRights <= 18) {
+							client.donatorIcons[client.myRights - 11].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11 + yOffset, 255);
+							drawOffsetX += 11;
+						} else if(client.myRights >= 1 && client.myRights <= 10) {
+							client.modIcons[client.myRights].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11 + yOffset, 255);
+							drawOffsetX += 11;
+						}
 					} else {
-						if(client.gamemode > 1 && (client.myRights == 0 || client.myRights >= 11)) {
-							client.modIcons[10 + client.gamemode].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11, 255);
+						//ironman icon
+						if((client.myRights >= 19 && client.myRights <= 26) || client.gamemode == 3) {
+							client.modIcons[13].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11, 255);
+							drawOffsetX += 10;
+						//ultimate ironman icon
+						} else if(client.myRights > 26 || client.gamemode == 2) {
+							client.modIcons[12].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11, 255);
 							drawOffsetX += 10;
 						}
 					}
