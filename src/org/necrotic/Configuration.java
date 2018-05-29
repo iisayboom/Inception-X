@@ -76,8 +76,10 @@ public class Configuration {
 	public final static String SERVER_HOST() {
 		// return "world1.necrotic.org"; // your live server's IP
 		//return "25.17.86.12"; // your local server's IP
-		//return "25.28.57.167";
-		return "25.17.86.12";
+		//return "25.28.57.167"; //niels laptop
+		//return "25.17.86.12"; //niels desktop
+		//return "localhost";
+		return "25.28.57.167";
 	}
 
 }
