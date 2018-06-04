@@ -2747,84 +2747,84 @@ public class CustomInterfaces extends RSInterface {
 		addPrayerWithTooltip(25000, 0, 83, 0, prayIndex, 25052,
 				"Activate @lre@Thick Skin");
 		prayIndex++;
-		addPrayerWithTooltip(25002, 0, 84, 3, prayIndex, 25054,
+		addPrayerWithTooltip(25002, 0, 84, 30, prayIndex, 25054,
 				"Activate @lre@Burst of Strength");
 		prayIndex++;
-		addPrayerWithTooltip(25004, 0, 85, 6, prayIndex, 25056,
+		addPrayerWithTooltip(25004, 0, 85, 60, prayIndex, 25056,
 				"Activate @lre@Clarity of Thought");
 		prayIndex++;
-		addPrayerWithTooltip(25006, 0, 601, 7, prayIndex, 25058,
+		addPrayerWithTooltip(25006, 0, 601, 70, prayIndex, 25058,
 				"Activate @lre@Sharp Eye");
 		prayIndex++;
-		addPrayerWithTooltip(25008, 0, 602, 8, prayIndex, 25060,
+		addPrayerWithTooltip(25008, 0, 602, 80, prayIndex, 25060,
 				"Activate @lre@Mystic Will");
 		prayIndex++;
-		addPrayerWithTooltip(25010, 0, 86, 9, prayIndex, 25062,
+		addPrayerWithTooltip(25010, 0, 86, 90, prayIndex, 25062,
 				"Activate @lre@Rock Skin");
 		prayIndex++;
-		addPrayerWithTooltip(25012, 0, 87, 12, prayIndex, 25064,
+		addPrayerWithTooltip(25012, 0, 87, 120, prayIndex, 25064,
 				"Activate @lre@Superhuman Strength");
 		prayIndex++;
-		addPrayerWithTooltip(25014, 0, 88, 15, prayIndex, 25066,
+		addPrayerWithTooltip(25014, 0, 88, 150, prayIndex, 25066,
 				"Activate @lre@Improved Reflexes");
 		prayIndex++;
-		addPrayerWithTooltip(25016, 0, 89, 18, prayIndex, 25068,
+		addPrayerWithTooltip(25016, 0, 89, 180, prayIndex, 25068,
 				"Activate @lre@Rapid Restore");
 		prayIndex++;
-		addPrayerWithTooltip(25018, 0, 90, 21, prayIndex, 25070,
+		addPrayerWithTooltip(25018, 0, 90, 210, prayIndex, 25070,
 				"Activate @lre@Rapid Heal");
 		prayIndex++;
-		addPrayerWithTooltip(25020, 0, 91, 24, prayIndex, 25072,
+		addPrayerWithTooltip(25020, 0, 91, 240, prayIndex, 25072,
 				"Activate @lre@Protect Item");
 		prayIndex++;
-		addPrayerWithTooltip(25022, 0, 603, 25, prayIndex, 25074,
+		addPrayerWithTooltip(25022, 0, 603, 250, prayIndex, 25074,
 				"Activate @lre@Hawk Eye");
 		prayIndex++;
-		addPrayerWithTooltip(25024, 0, 604, 26, prayIndex, 25076,
+		addPrayerWithTooltip(25024, 0, 604, 260, prayIndex, 25076,
 				"Activate @lre@Mystic Lore");
 		prayIndex++;
-		addPrayerWithTooltip(25026, 0, 92, 27, prayIndex, 25078,
+		addPrayerWithTooltip(25026, 0, 92, 270, prayIndex, 25078,
 				"Activate @lre@Steel Skin");
 		prayIndex++;
-		addPrayerWithTooltip(25028, 0, 93, 30, prayIndex, 25080,
+		addPrayerWithTooltip(25028, 0, 93, 300, prayIndex, 25080,
 				"Activate @lre@Ultimate Strength");
 		prayIndex++;
-		addPrayerWithTooltip(25030, 0, 94, 33, prayIndex, 25082,
+		addPrayerWithTooltip(25030, 0, 94, 330, prayIndex, 25082,
 				"Activate @lre@Incredible Reflexes");
 		prayIndex++;
-		addPrayerWithTooltip(25032, 0, 95, 36, prayIndex, 25084,
+		addPrayerWithTooltip(25032, 0, 95, 360, prayIndex, 25084,
 				"Activate @lre@Protect from Magic");
 		prayIndex++;
-		addPrayerWithTooltip(25034, 0, 96, 39, prayIndex, 25086,
+		addPrayerWithTooltip(25034, 0, 96, 390, prayIndex, 25086,
 				"Activate @lre@Protect from Missles");
 		prayIndex++;
-		addPrayerWithTooltip(25036, 0, 97, 42, prayIndex, 25088,
+		addPrayerWithTooltip(25036, 0, 97, 420, prayIndex, 25088,
 				"Activate @lre@Protect from Melee");
 		prayIndex++;
-		addPrayerWithTooltip(25038, 0, 605, 43, prayIndex, 25090,
+		addPrayerWithTooltip(25038, 0, 605, 430, prayIndex, 25090,
 				"Activate @lre@Eagle Eye");
 		prayIndex++;
-		addPrayerWithTooltip(25040, 0, 606, 44, prayIndex, 25092,
+		addPrayerWithTooltip(25040, 0, 606, 440, prayIndex, 25092,
 				"Activate @lre@Mystic Might");
 		prayIndex++;
-		addPrayerWithTooltip(25042, 0, 98, 45, prayIndex, 25094,
+		addPrayerWithTooltip(25042, 0, 98, 450, prayIndex, 25094,
 				"Activate @lre@Retribution");
 		prayIndex++;
-		addPrayerWithTooltip(25044, 0, 99, 48, prayIndex, 25096,
+		addPrayerWithTooltip(25044, 0, 99, 480, prayIndex, 25096,
 				"Activate @lre@Redemption");
 		prayIndex++;
-		addPrayerWithTooltip(25046, 0, 100, 51, prayIndex, 25098,
+		addPrayerWithTooltip(25046, 0, 100, 510, prayIndex, 25098,
 				"Activate @lre@Smite");
 		prayIndex++;
-		addPrayerWithTooltip(25048, 0, 607, 59, prayIndex, 25100,
+		addPrayerWithTooltip(25048, 0, 607, 590, prayIndex, 25100,
 				"Activate @lre@Chivalry");
 		prayIndex++;
-		addPrayerWithTooltip(25050, 0, 608, 69, prayIndex, 25102,
+		addPrayerWithTooltip(25050, 0, 608, 690, prayIndex, 25102,
 				"Activate @lre@Piety");
 		prayIndex++;
-		addPrayerWithTooltip(25104, 0, 609, 79, prayIndex, 25106, "Activate @lre@Rigour");
+		addPrayerWithTooltip(25104, 0, 609, 790, prayIndex, 25106, "Activate @lre@Rigour");
 		prayIndex++;
-		addPrayerWithTooltip(25108, 0, 610, 89, prayIndex, 25110, "Activate @lre@Augury");
+		addPrayerWithTooltip(25108, 0, 610, 890, prayIndex, 25110, "Activate @lre@Augury");
 		prayIndex++;
 		addTooltip(25052, "Level 01\nThick Skin\nIncreases your Defence by 5%");
 		addTooltip(25054,

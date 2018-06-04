@@ -1287,6 +1287,7 @@ public class Client extends GameRenderer {
 	private int musicVolume = 255;
 	private final int myPlayerIndex;
 	public int myRights;
+	//public int myGameMode;
 	public int gamemode;
 	private String name;
 	public RSFontSystem newSmallFont, newRegularFont, newBoldFont;
@@ -1312,7 +1313,7 @@ public class Client extends GameRenderer {
 	public int publicChatMode;
 	public int reportAbuseInterfaceID;
 	private RSImageProducer rightFrame;
-	private int rights;
+	private int clanChatRights;
 	private boolean running;
 	private ScriptManager scriptManager;
 	private final Sprite[] scrollBar;
@@ -6881,10 +6882,10 @@ public class Client extends GameRenderer {
 							s = s.replaceAll("</img>", "");
 							s = s.replaceAll("<img=>", "");
 						} catch (NumberFormatException nfe) { 
-							//System.out.println("Unable to draw player crown on interface. Unable to read rights.");
+							//System.out.println("Unable to draw player crown on interface. Unable to read clanChatRights.");
 							s = INITIAL_MESSAGE;
 						} catch (IllegalStateException ise) {
-							//System.out.println("Unable to draw player crown on interface, rights too low or high.");
+							//System.out.println("Unable to draw player crown on interface, clanChatRights too low or high.");
 							s = INITIAL_MESSAGE;
 						}
 						if(suffix > prefix) {
@@ -7945,13 +7946,28 @@ public class Client extends GameRenderer {
 					}
 
 					if (rights != 0) {
-						System.out.println("Rights: " + rights);
+/*						System.out.println("Rights: " + rights);
 						if (rights < 11) {
 							modIcons[rights].drawTransparentSprite(xOffset, yOffset - 12, 255);
 						} else {
 							donatorIcons[rights - 11].drawTransparentSprite(xOffset, yOffset - 12, 255);
 						}
 						xOffset += modIcons[rights].maxWidth + 2;
+*/
+
+						if (rights >= 11 && rights <= 18) {
+							donatorIcons[rights - 11].drawTransparentSprite(xOffset, yOffset - 12, 255);
+							xOffset += 11;
+						} else if(rights >= 1 && rights <= 10) {
+							modIcons[rights].drawTransparentSprite(xOffset, yOffset - 12, 255);
+							xOffset += 11;
+						} else if((rights >= 19 && rights <= 26) || rights == 35) {
+							modIcons[13].drawTransparentSprite(xOffset, yOffset - 12, 255);
+							xOffset += 10;
+						} else if(rights > 26 || rights == 36) {
+							modIcons[12].drawTransparentSprite(xOffset, yOffset - 12, 255);
+							xOffset += 10;
+						}
 					}
 
 					textDrawingArea.method385(0, name + ": " + chatMessages[index], yOffset, xOffset);
@@ -8597,6 +8613,7 @@ public class Client extends GameRenderer {
 		byte rights = 0;
 		int start = 3;
 		int end = highRights ? 5 : 4;
+
 		if (!prefix.contains("cr")) {
 			start = 2;
 		}
@@ -9554,9 +9571,9 @@ public class Client extends GameRenderer {
 					// player.privilegeLevel = j2;
 					player.anInt1531 = effects & 0xff;
 					player.textCycle = 150;
-					if(rights == 0 && ironman > 0) {
-						rights = 11 + ironman;
-					}
+					//if(rights == 0 && ironman > 0) {
+						//rights = 11 + ironman;
+					//}
 					if (Configuration.HIGHLIGHT_USERNAME) {
 							pushMessage(s.replace(myPlayer.name.toLowerCase(), "<col=ff0000>" + myPlayer.name.toLowerCase() + "</col>").replace(myPlayer.name, "<col=ff0000>" + myPlayer.name + "</col>") , 2, getPrefix(rights) + player.name, player.loyaltyTitle, player.loyaltyColor, player.loyaltyPosition);
 						} else {
@@ -11975,9 +11992,12 @@ public class Client extends GameRenderer {
 						myPlayer.anInt1531 = i3;
 						myPlayer.textCycle = 150;
 						int prefixRights = myRights;
-						if(prefixRights == 0 && gamemode > 0) {
-							prefixRights = 11 + gamemode;
-						}
+
+						//check this SHIT
+						//if(prefixRights == 0 && gamemode > 0) {
+							//prefixRights = 11 + gamemode;
+						//}
+
 						pushMessage(myPlayer.textSpoken, 2, getPrefix(prefixRights) + myPlayer.name, myPlayer.loyaltyTitle, myPlayer.loyaltyColor, myPlayer.loyaltyPosition);
 
 						if (publicChatMode == 2) {
@@ -12645,10 +12665,10 @@ public class Client extends GameRenderer {
 					name = getInputBuffer().getString();
 					message = getInputBuffer().getString();
 					clanName = getInputBuffer().getString();
-					rights = getInputBuffer().getUnsignedShort();
+					clanChatRights = getInputBuffer().getUnsignedShort();
 					/*
-					 * String addon = null; if(rights < 4) addon =
-					 * "@cr"+rights+"@";
+					 * String addon = null; if(clanChatRights < 4) addon =
+					 * "@cr"+clanChatRights+"@";
 					 */
 					String tag = name.replaceAll("null", "");
 					message = TextInput.processText(message);
@@ -13676,6 +13696,9 @@ public class Client extends GameRenderer {
 					
 				case 127:
 					myRights = getInputBuffer().getUnsignedByte();
+					System.out.println("Player Right: " + myRights);
+					//myGameMode = getInputBuffer().getUnsignedByte();
+					//System.out.println("Player gamemode: " + myGameMode);
 					pktType = -1;
 					return true;
 
@@ -14568,6 +14591,9 @@ public class Client extends GameRenderer {
 	 */
 	public void finishLogin(Client client) throws IOException {
 		client.myRights = client.getConnection().read();
+		//client.myGameMode = client.getConnection().read();
+		//System.out.println("Finish Login : gamemode = " + client.myGameMode);
+		//System.out.println("Finish Login : Rights " + client.myRights);
 		Client.flagged = client.getConnection().read() == 1;
 		client.mouseDetection.coordsIndex = 0;
 		client.awtFocus = true;
@@ -15316,7 +15342,7 @@ public class Client extends GameRenderer {
 		chatTypes[0] = chatType;
 		chatNames[0] = chatName;
 		chatMessages[0] = chatMessage.trim();
-		chatRights[0] = rights;
+		chatRights[0] = clanChatRights;
 		chatTitles[0] = title;
 		chatColor[0] = color;
 		chatPosition[0] = position;
@@ -15345,7 +15371,7 @@ public class Client extends GameRenderer {
 		chatTypes[0] = chatType;
 		chatNames[0] = chatName;
 		chatMessages[0] = chatMessage.trim();
-		chatRights[0] = rights;
+		chatRights[0] = clanChatRights;
 		chatTitles[0] = "";
 		chatColor[0] = 0;
 		chatPosition[0] = 0;
