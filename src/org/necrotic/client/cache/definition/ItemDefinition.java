@@ -480,7 +480,6 @@ public final class ItemDefinition {
 			itemDef.actions = new String[] { "Munch", null, "Guzzle", null, "Destroy" };
 			break;
 		case 12926:
-			itemDef.actions = new String[5];
 			itemDef.modelID = 19219;
 			itemDef.name = "Toxic blowpipe";
 			itemDef.modelZoom = 1158;
@@ -491,8 +490,8 @@ public final class ItemDefinition {
 			itemDef.value = 20000000;
 			itemDef.maleWearId = 14403;
 			itemDef.femaleWearId = 14403;
+			itemDef.actions = new String[6];
 			itemDef.actions[1] = "Wield";
-			//itemDef.actions[2] = "Uncharge";
 			itemDef.actions[3] = "Uncharge";
 			itemDef.groundActions = new String[] { null, null, "Take", null, null };
 			break;

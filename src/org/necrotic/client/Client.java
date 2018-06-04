@@ -2955,7 +2955,7 @@ public class Client extends GameRenderer {
 														menuActionCmd2[menuActionRow] = k2;
 														menuActionCmd3[menuActionRow] = children.id;
 														menuActionRow++;
-													} else if (l3 == 4) {
+													} else if (l3 == 4) { //actions[4] == null do this
 														menuActionName[menuActionRow] = "Drop @lre@" + definition.name;
 														menuActionID[menuActionRow] = 847;
 														menuActionCmd1[menuActionRow] = definition.id;
@@ -4640,6 +4640,24 @@ public class Client extends GameRenderer {
 					atInventoryIndex = slot;
 					atInventoryInterfaceType = 2;
 
+					if (RSInterface.interfaceCache[interfaceId].parentID == openInterfaceID) {
+						atInventoryInterfaceType = 1;
+					}
+
+					if (RSInterface.interfaceCache[interfaceId].parentID == backDialogID) {
+						atInventoryInterfaceType = 3;
+					}
+				}
+
+				if (action == 848) {
+					getOut().putOpcode(22);
+					getOut().writeUnsignedWordA(nodeId);
+					getOut().putShort(interfaceId);
+					getOut().writeUnsignedWordA(slot);
+					atInventoryLoopCycle = 0;
+					atInventoryInterface = interfaceId;
+					atInventoryIndex = slot;
+					atInventoryInterfaceType = 2;
 					if (RSInterface.interfaceCache[interfaceId].parentID == openInterfaceID) {
 						atInventoryInterfaceType = 1;
 					}
