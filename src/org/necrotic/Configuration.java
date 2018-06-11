@@ -79,7 +79,8 @@ public class Configuration {
 		//return "25.28.57.167"; //niels laptop
 		//return "25.17.86.12"; //niels desktop
 		//return "localhost";
-		return "25.28.57.167";
+		//return "25.28.57.167";
+		return "144.217.84.225";
 	}
 
 }

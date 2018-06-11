@@ -1467,6 +1467,11 @@ public final class MobDefinition {
 			definition.actions = new String[] {null, null, "Buy Equipment", "Buy Ammunition", null};
 			definition.name = "Archer";
 			break;
+
+		case 308:
+			definition.actions = new String[] {"Talk to", null, null, null, null};
+			definition.name = "Master Fisher";
+			break;
 		case 946:
 			definition.actions = new String[] {null, null, "Buy Equipment", "Buy Runes", "Buy Teleports"};
 			definition.name = "Mage";
