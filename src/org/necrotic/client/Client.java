@@ -14,20 +14,9 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.image.BufferedImage;
-import java.io.BufferedInputStream;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.EOFException;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
 import java.lang.reflect.Method;
-import java.net.InetAddress;
-import java.net.Socket;
-import java.net.URL;
-import java.net.UnknownHostException;
+import java.net.*;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -7413,16 +7402,16 @@ public class Client extends GameRenderer {
 	
 	private int loadingPercentage;
 	private BufferedImage[] loadingImages;
-	
+
 	public void displayLoadingScreen() {
-		
-		if(loadingImages[0] == null 
-		|| loadingImages[1] == null 
-		|| loadingImages[2] == null 
-		|| loadingImages[3] == null) {
+
+		if(loadingImages[0] == null
+				|| loadingImages[1] == null
+				|| loadingImages[2] == null
+				|| loadingImages[3] == null) {
 			return;
 		}
-		
+
 		super.graphics.drawImage(loadingImages[0], 0, 0, null);
 		super.graphics.drawImage(loadingImages[1], 80, 443, null);
 		if(loadingPercentage > 0) {
@@ -7430,21 +7419,21 @@ public class Client extends GameRenderer {
 			if(scaleX > 559) {
 				scaleX = 559;
 			}
-			
+
 			super.graphics.drawImage(loadingImages[3], 72+scaleX, 410, null);
 			super.graphics.setFont(new Font("Serif", Font.BOLD, 16));
-			
+
 			int drawTextX = 80+scaleX;
 			if(loadingPercentage < 10) {
 				drawTextX += 4;
 			} else if(loadingPercentage == 100) {
 				drawTextX -= 4;
 			}
-			
+
 			super.graphics.drawString(""+loadingPercentage+"", drawTextX, 432);
-			
+
 			super.graphics.drawImage(loadingImages[2].getSubimage(0, 0, scaleX, 32), 89, 453, null);
-		//	super.graphics.drawImage(loadingImages[4], 18+scaleX, 453, null);
+			//    super.graphics.drawImage(loadingImages[4], 18+scaleX, 453, null);
 		}
 	}
 	
@@ -15873,7 +15862,11 @@ public class Client extends GameRenderer {
 		getDocumentBaseHost();
 		
 		/** CACHE DOWNLOADS **/
-		downloadImagesBeforeCache();
+		try {
+			downloadImagesBeforeCache();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 		if(CacheDownloader.updatedCache()) {
 			if (super.mainFrame != null) {
@@ -16248,42 +16241,36 @@ public class Client extends GameRenderer {
 		loadingError = true;
 	}
 
-	private void downloadImagesBeforeCache() {
-		for(int i = 0; i < loadingImages.length; i++) {
+	private void downloadImagesBeforeCache() throws IOException {
+		URL url = null;
+		for(int i = 0; i<4; i++) {
 			File dir = new File(Signlink.getCacheDirectory() + i + ".png");
-			if(!dir.exists()) {
-				if (i == 0) {
-					boolean downloadedImage = HttpDownloadUtility.downloadFileWithName("0.png","https://inceptionx289325608.files.wordpress.com/2018/05/0.png",  Signlink.getCacheDirectory());
-					if(!downloadedImage) {
-						HttpDownloadUtility.downloadFileWithName("0.png","https://i.imgur.com/7PwBNSM.png?dl=1",  Signlink.getCacheDirectory());
-					}
-				}
-
-				if (i == 1) {
-					boolean downloadedImage = HttpDownloadUtility.downloadFileWithName("1.png","https://www.dropbox.com/s/gd7o0fj14os7205/1.png",  Signlink.getCacheDirectory());
-					if(!downloadedImage) {
-						HttpDownloadUtility.downloadFileWithName("1.png","https://www.dropbox.com/s/gd7o0fj14os7205/1.png?dl=1",  Signlink.getCacheDirectory());
-					}
-				}
-
-				if (i == 2) {
-					boolean downloadedImage = HttpDownloadUtility.downloadFileWithName("2.png","https://www.dropbox.com/s/azbkk1fidvinbq4/2.png",  Signlink.getCacheDirectory());
-					if(!downloadedImage) {
-						HttpDownloadUtility.downloadFileWithName("2.png","https://www.dropbox.com/s/azbkk1fidvinbq4/2.png?dl=1",  Signlink.getCacheDirectory());
-					}
-				}
-
-				if (i == 3) {
-					boolean downloadedImage = HttpDownloadUtility.downloadFileWithName("3.png","https://www.dropbox.com/s/mx3d8ljo10hgrm6/3.png",  Signlink.getCacheDirectory());
-					if(!downloadedImage) {
-						HttpDownloadUtility.downloadFileWithName("3.png","https://www.dropbox.com/s/mx3d8ljo10hgrm6/3.png?dl=1",  Signlink.getCacheDirectory());
-					}
-				}
-
-			}
 			try {
-				loadingImages[i] = ImageIO.read(dir);
-			} catch(Exception e){}
+				url = new URL("http://client.inception-x.com/" + i + ".png");
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			}
+			InputStream in = null;
+			try {
+				in = new BufferedInputStream(url.openStream());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			byte[] buf = new byte[1024];
+			int n = 0;
+			while (-1!=(n=in.read(buf)))
+			{
+				out.write(buf, 0, n);
+			}
+			out.close();
+			in.close();
+			byte[] response = out.toByteArray();
+
+			FileOutputStream fos = new FileOutputStream(Signlink.getCacheDirectory() + "/" + i + ".png");
+			fos.write(response);
+			fos.close();
+			loadingImages[i] = ImageIO.read(dir);
 		}
 	}
 

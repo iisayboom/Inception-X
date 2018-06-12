@@ -40,8 +40,8 @@ public class CacheDownloader {
 	 private static final String CACHE_URL = "https://www.dropbox.com/s/8tvkudhvn3kv6gb/NecroticCache.zip?dl=1";
 	 private static final String NEWEST_VERSION_FILE_URL = "https://www.dropbox.com/s/pwed3tjhs1rnio1/cache_version.txt?dl=1";
 	 private static final String CURRENT_VERSION_FILE = "cache_version.txt";
-	 public static final String URL_TO_LOADING_IMAGES = "https://www.dropbox.com/sh/jvwjs3523faxi7o/AAAr4XNifqvXmiIpPzhvHL-Ta/";
-	 public static final String MIRROR_URL_TO_LOADING_IMAGES = "https://www.dropbox.com/sh/jvwjs3523faxi7o/AAAr4XNifqvXmiIpPzhvHL-Ta/";
+	 public static final String URL_TO_LOADING_IMAGES = "http://client.inception-x.com/";
+	 public static final String MIRROR_URL_TO_LOADING_IMAGES = "http://client.inception-x.com/";
 	 
 	 
 	public static boolean UPDATING = true;
