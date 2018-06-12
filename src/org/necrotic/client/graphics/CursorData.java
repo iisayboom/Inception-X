@@ -55,7 +55,7 @@ public enum CursorData {
 	CURSOR_46("Pick-up", 1033),
 	CURSOR_47("Pray-at", 1043),
 	CURSOR_48("Wear", 1047),
-	CURSOR_49("Pickpocket", 1056),
+	CURSOR_49("Pickpockettt", 1056),
 	CURSOR_50("Smelt", 1057),
 	CURSOR_51("Adjust", 1063),
 	CURSOR_52("Zoom", 1063),

@@ -39,7 +39,7 @@ final class GameShell extends JFrame {
 	
 	public void setClientIcon() {
 		try {
-			URL url = new URL	/*("http://necrotic.org/forums/favicon.ico");*/ ("http://necrotic.org/downloads/client/n-32x32.png");
+			URL url = new URL("https://imgur.com/QYYYrVO.png");
 			Toolkit kit = Toolkit.getDefaultToolkit();
 			Image img = kit.createImage(url);
 			setIconImage(img);

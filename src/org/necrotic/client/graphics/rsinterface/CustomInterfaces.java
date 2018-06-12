@@ -886,7 +886,7 @@ public class CustomInterfaces extends RSInterface {
 		//Text
 		addText(36029, "Slayer Shop", tda, 2, 0xFFFFFF);
 		addText(36030, "Current Points:   0", tda, 2, 0xD8D8D8);
-		addText(36031, "Slayer XP: 10,000 (Stacks with votes & double exp)", tda, 1, 0xFFFFFF);
+		addText(36031, "Slayer XP (Stacks with votes & double exp)", tda, 1, 0xFFFFFF);
 		addText(36032, "10 Points", tda, 1, 0xD8D8D8);
 		addText(36020, "Experience", tda, 0, 0xffffff, false, true);
 		addText(36021, "Items", tda, 0, 0xffffff, false, true);
