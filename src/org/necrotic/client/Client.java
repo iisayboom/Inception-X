@@ -79,7 +79,6 @@ import org.necrotic.client.graphics.rsinterface.PetSystem;
 import org.necrotic.client.io.ByteBuffer;
 import org.necrotic.client.io.ISAACCipher;
 import org.necrotic.client.net.Connection;
-import org.necrotic.client.net.HttpDownloadUtility;
 import org.necrotic.client.renderable.Animable;
 import org.necrotic.client.renderable.Animable_Sub3;
 import org.necrotic.client.renderable.Animable_Sub5;
@@ -1268,7 +1267,7 @@ public class Client extends GameRenderer {
 	public Sprite miniMapRegions;
 	public int minimapRotation;
 	public int minimapZoom;
-	public final Sprite[] modIcons;
+	public final Sprite[] staffIcons;
 	public final Sprite[] donatorIcons;
 	public MouseDetection mouseDetection;
 	private int mouseInvInterfaceIndex;
@@ -1495,8 +1494,8 @@ public class Client extends GameRenderer {
 		sound = new int[50];
 		anInt1211 = 78;
 		promptInput = "";
-		modIcons = new Sprite[15];
-		donatorIcons = new Sprite[8];
+		staffIcons = new Sprite[6];
+		donatorIcons = new Sprite[9];
 		tabID = 3;
 		setInputTaken(false);
 		mapImagePixelCutRight = new int[152];
@@ -7935,26 +7934,18 @@ public class Client extends GameRenderer {
 					}
 
 					if (rights != 0) {
-/*						System.out.println("Rights: " + rights);
-						if (rights < 11) {
-							modIcons[rights].drawTransparentSprite(xOffset, yOffset - 12, 255);
-						} else {
-							donatorIcons[rights - 11].drawTransparentSprite(xOffset, yOffset - 12, 255);
-						}
-						xOffset += modIcons[rights].maxWidth + 2;
-*/
 
 						if (rights >= 11 && rights <= 18) {
 							donatorIcons[rights - 11].drawTransparentSprite(xOffset, yOffset - 12, 255);
 							xOffset += 11;
 						} else if(rights >= 1 && rights <= 10) {
-							modIcons[rights].drawTransparentSprite(xOffset, yOffset - 12, 255);
+							staffIcons[rights].drawTransparentSprite(xOffset, yOffset - 12, 255);
 							xOffset += 11;
 						} else if((rights >= 19 && rights <= 26) || rights == 35) {
-							modIcons[13].drawTransparentSprite(xOffset, yOffset - 12, 255);
+							staffIcons[13].drawTransparentSprite(xOffset, yOffset - 12, 255);
 							xOffset += 10;
 						} else if(rights > 26 || rights == 36) {
-							modIcons[12].drawTransparentSprite(xOffset, yOffset - 12, 255);
+							staffIcons[12].drawTransparentSprite(xOffset, yOffset - 12, 255);
 							xOffset += 10;
 						}
 					}
@@ -7985,7 +7976,7 @@ public class Client extends GameRenderer {
 					xOffset += textDrawingArea.getTextWidth("To ");
 
 					if (rights != 0) {
-						modIcons[rights].drawTransparentSprite(xOffset, yOffset - 12, 255);
+						staffIcons[rights].drawTransparentSprite(xOffset, yOffset - 12, 255);
 						xOffset += 12;
 					}
 
@@ -8596,6 +8587,32 @@ public class Client extends GameRenderer {
 		if(prefix == null)
 			return 5;
 		return prefix.contains("cr10") || prefix.contains("cr11") ? 6 : 5;
+	}
+
+
+	/*
+	@c71@iron
+	Substring 2,4 bij geen cr
+
+
+	Als cr => substring 5 => als laatste karakter @ dan substring 4 en als begin substring 3
+	 @cr0@player
+
+	* */
+
+	public int getOtherPlayersRight(String prefix) {
+		String rights;
+		if(!prefix.contains("cr")) {
+			rights = prefix.substring(2,4);
+			return Integer.parseInt(rights);
+		} else {
+			rights = prefix.substring(3,5);
+			char lastchar = rights.charAt(rights.length()-1);
+			if(rights.charAt(rights.length()-1) == '@') {
+				rights = rights.substring(0,rights.length()-1);
+			}
+			return Integer.parseInt(rights);
+		}
 	}
 
 	public byte getPrefixRights(String prefix, boolean highRights) {
@@ -16091,11 +16108,11 @@ public class Client extends GameRenderer {
 				scrollBar[id] = new Sprite(mediaArchive, "scrollbar", id);
 			}
 
-			for (int l4 = 0; l4 < modIcons.length; l4++) {
-				modIcons[l4] = cacheSprite[827+l4];
+			for (int l4 = 0; l4 < staffIcons.length; l4++) {
+				staffIcons[l4] = cacheSprite[1227+l4];
 			}
 			for (int i = 0; i < donatorIcons.length; i++) {
-				donatorIcons[i] = cacheSprite[1219+i];
+				donatorIcons[i] = cacheSprite[1218+i];
 				//donatorIcons[i] = cacheSprite[827+i];
 			}
 

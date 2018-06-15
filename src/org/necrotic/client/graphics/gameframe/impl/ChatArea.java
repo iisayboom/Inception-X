@@ -297,7 +297,12 @@ public class ChatArea extends GameFrame {
 						int positionY = 70 - messageY * 14 + Client.anInt1089 + 6;
 						String name = client.chatNames[i];
 						String prefixName = name;
-						byte otherPeoplesRights = 0;
+						int otherPeoplesRights = 0;
+						int myRight = client.myRights;
+
+						//System.out.println("My right: " + myRight);
+						//System.out.println("Other players rights: " + otherPeoplesRights);
+
 						//boolean ironman = playerRights == 50 ? true:false;
 						//boolean hcIron = false;
 
@@ -306,7 +311,8 @@ public class ChatArea extends GameFrame {
 						if (name != null && name.indexOf("@") == 0) {
 							int substringLength = Client.getClient().getPrefixSubstringLength(name);
 							name = name.substring(substringLength);
-							otherPeoplesRights = client.getPrefixRights(prefixName.substring(0, prefixName.indexOf(name)), substringLength == 6);
+							//otherPeoplesRights = client.getPrefixRights(prefixName.substring(0, prefixName.indexOf(name)), substringLength == 6);
+							otherPeoplesRights = client.getOtherPlayersRight(prefixName);
 						}
 
 						// Don't show Private messages in "All" if split chat is
@@ -374,27 +380,43 @@ public class ChatArea extends GameFrame {
 										playerRights = 0;
 									}
 									*/
-									if (otherPeoplesRights >= 11 && otherPeoplesRights <= 18) {
-										client.donatorIcons[otherPeoplesRights - 11].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+
+									if(otherPeoplesRights == 70) {
+										Client.cacheSprite[840].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
 										xPos += 11;
-									} else if(otherPeoplesRights >= 1 && otherPeoplesRights <= 10) {
-										client.modIcons[otherPeoplesRights].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+									} else if(otherPeoplesRights == 71) {
+										Client.cacheSprite[839].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
 										xPos += 11;
-									} else if((otherPeoplesRights >= 19 && otherPeoplesRights <= 26) || otherPeoplesRights == 35) {
-										client.modIcons[13].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
-										xPos += 10;
-									} else if(otherPeoplesRights > 26 || otherPeoplesRights == 36) {
-										client.modIcons[12].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
-										xPos += 10;
+									} else if(otherPeoplesRights >= 1 && otherPeoplesRights <= 9) { //admin
+										client.donatorIcons[otherPeoplesRights].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+										xPos += 11;
+									} else if (otherPeoplesRights >= 10 && otherPeoplesRights <= 19) { //youtube
+										client.staffIcons[0].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+										xPos += 11;
+									} else if(otherPeoplesRights >= 20 && otherPeoplesRights <= 29) { //support
+										client.staffIcons[1].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+										xPos += 11;
+									} else if(otherPeoplesRights >= 30 && otherPeoplesRights <= 39) { //mod
+										client.staffIcons[2].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+										xPos += 11;
+									} else if(otherPeoplesRights >= 40 && otherPeoplesRights <= 49) { //admin
+										client.staffIcons[3].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+										xPos += 11;
+									} else if(otherPeoplesRights >= 50 && otherPeoplesRights <= 59) { //owner
+										client.staffIcons[4].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+										xPos += 11;
+									} else if(otherPeoplesRights >= 60 && otherPeoplesRights <= 69) { //developer
+										client.staffIcons[5].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+										xPos += 11;
 									}
 
 
 									/*
 									if (playerRights > 0) {
-										client.modIcons[playerRights].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+										client.staffIcons[playerRights].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
 										xPos += 11;
 									} else if(playerRights == 0 && ironman > 0) {
-										client.modIcons[11 + ironman].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+										client.staffIcons[11 + ironman].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
 										xPos += 10;
 									}
 									*/
@@ -431,18 +453,33 @@ public class ChatArea extends GameFrame {
 									textDrawingArea.drawBasicString("From", xPos + getOffSetX(), positionY + getOffSetY(), screenMode == ScreenMode.FIXED ? 0 : 0xffffff, screenMode == ScreenMode.FIXED ? -1 : 0, true);
 									xPos += textDrawingArea.getTextWidth("From ");
 
-									if (otherPeoplesRights >= 11 && otherPeoplesRights <= 18) {
-										client.donatorIcons[otherPeoplesRights - 11].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+									if(otherPeoplesRights == 70) {
+										Client.cacheSprite[840].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
 										xPos += 11;
-									} else if(otherPeoplesRights >= 1 && otherPeoplesRights <= 10) {
-										client.modIcons[otherPeoplesRights].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+									} else if(otherPeoplesRights == 71) {
+										Client.cacheSprite[839].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
 										xPos += 11;
-									} else if(otherPeoplesRights >= 19 && otherPeoplesRights <= 26 || otherPeoplesRights == 35) {
-										client.modIcons[12].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
-										xPos += 10;
-									} else if(otherPeoplesRights > 26 || otherPeoplesRights == 36) {
-										client.modIcons[13].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
-										xPos += 10;
+									} else if(otherPeoplesRights >= 1 && otherPeoplesRights <= 9) { //admin
+										client.donatorIcons[otherPeoplesRights].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+										xPos += 11;
+									} else if (otherPeoplesRights >= 10 && otherPeoplesRights <= 19) { //youtube
+										client.staffIcons[0].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+										xPos += 11;
+									} else if(otherPeoplesRights >= 20 && otherPeoplesRights <= 29) { //support
+										client.staffIcons[1].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+										xPos += 11;
+									} else if(otherPeoplesRights >= 30 && otherPeoplesRights <= 39) { //mod
+										client.staffIcons[2].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+										xPos += 11;
+									} else if(otherPeoplesRights >= 40 && otherPeoplesRights <= 49) { //admin
+										client.staffIcons[3].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+										xPos += 11;
+									} else if(otherPeoplesRights >= 50 && otherPeoplesRights <= 59) { //owner
+										client.staffIcons[4].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+										xPos += 11;
+									} else if(otherPeoplesRights >= 60 && otherPeoplesRights <= 69) { //developer
+										client.staffIcons[5].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+										xPos += 11;
 									}
 
 									textDrawingArea.drawBasicString(name + ":", xPos + getOffSetX(), positionY + getOffSetY(), screenMode == ScreenMode.FIXED ? 0 : 0xffffff, screenMode == ScreenMode.FIXED ? -1 : 0, true);
@@ -525,11 +562,43 @@ public class ChatArea extends GameFrame {
 
 				client.drawScrollbar(114, Client.anInt1211 - Client.anInt1089 - 113, getOffSetY() + 7, getOffSetX() + 495, Client.anInt1211, false, screenMode != ScreenMode.FIXED);
 
+				//personal icon bottom chat
 				if (Client.myPlayer != null && Client.myPlayer.name != null) {
 
 					int drawOffsetX = getOffSetX() + getOffSetX() + 8;
 					int drawOffsetY = getOffSetY() + 133;
 
+					int yOffset = 0;
+					if(client.myRights == 70) {
+						Client.cacheSprite[840].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11 + yOffset, 255);
+						drawOffsetX += 11;
+					} else if(client.myRights == 71) {
+						Client.cacheSprite[839].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11 + yOffset, 255);
+						drawOffsetX += 11;
+					} else if(client.myRights >= 1 && client.myRights <= 9) { //donators
+						client.donatorIcons[client.myRights].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11 + yOffset, 255);
+						drawOffsetX += 11;
+					} else if (client.myRights >= 10 && client.myRights <= 19) { //youtube
+						client.staffIcons[0].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11 + yOffset, 255);
+						drawOffsetX += 11;
+					} else if(client.myRights >= 20 && client.myRights <= 29) { //support
+						client.staffIcons[1].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11 + yOffset, 255);
+						drawOffsetX += 11;
+					} else if(client.myRights >= 30 && client.myRights <= 39) { //mod
+						client.staffIcons[2].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11 + yOffset, 255);
+						drawOffsetX += 11;
+					} else if(client.myRights >= 40 && client.myRights <= 49) { //admin
+						client.staffIcons[3].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11 + yOffset, 255);
+						drawOffsetX += 11;
+					} else if(client.myRights >= 50 && client.myRights <= 59) { //owner
+						client.staffIcons[4].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11 + yOffset, 255);
+						drawOffsetX += 11;
+					} else if(client.myRights >= 60 && client.myRights <= 69) { //developer
+						client.staffIcons[5].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11 + yOffset, 255);
+						drawOffsetX += 11;
+					}
+
+					/*
 					if (client.myRights > 0 && client.gamemode <= 1) {
 						int crown = client.myRights;
 						//System.out.println("my right: " + crown);
@@ -545,20 +614,21 @@ public class ChatArea extends GameFrame {
 							client.donatorIcons[client.myRights - 11].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11 + yOffset, 255);
 							drawOffsetX += 11;
 						} else if(client.myRights >= 1 && client.myRights <= 10) {
-							client.modIcons[client.myRights].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11 + yOffset, 255);
+							client.staffIcons[client.myRights].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11 + yOffset, 255);
 							drawOffsetX += 11;
 						}
 					} else {
 						//ironman icon
 						if((client.myRights >= 19 && client.myRights <= 26) || client.gamemode == 3) {
-							client.modIcons[13].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11, 255);
+							client.staffIcons[13].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11, 255);
 							drawOffsetX += 10;
 						//ultimate ironman icon
 						} else if(client.myRights > 26 || client.gamemode == 2) {
-							client.modIcons[12].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11, 255);
+							client.staffIcons[12].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11, 255);
 							drawOffsetX += 10;
 						}
 					}
+					*/
 
 
 
