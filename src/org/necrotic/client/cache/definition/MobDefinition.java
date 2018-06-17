@@ -1444,6 +1444,8 @@ public final class MobDefinition {
 			definition.actions = new String[] {"Trade", null, null, null, null};
 			break;
 		case 3299:
+			definition.actions = new String[] {"Trade", "Teleports", null, null, null};
+			break;
 		case 437:
 			definition.actions = new String[] {"Trade", null, null, null, null};
 			break;
