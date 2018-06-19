@@ -24,7 +24,7 @@ public class SpriteLoader {
 	 */
 	private static void createSprite(SpriteLoader sprite) {
 
-		dumpSprites(sprite);
+		//dumpSprites(sprite);
 
 		sprites[sprite.id] = new Sprite(sprite.spriteData);
 		sprites[sprite.id].drawOffsetX = sprite.drawOffsetX;

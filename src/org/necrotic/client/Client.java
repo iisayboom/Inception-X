@@ -1972,7 +1972,7 @@ public class Client extends GameRenderer {
 							}
 						}
 					}
-					menuActionName[menuActionRow] = myRights == 4 ? "Examine @cya@"
+					menuActionName[menuActionRow] = myRights >= 60 && myRights <= 69 ? "Examine @cya@"
 							+ class46.name + " @gre@(@whi@" + class46.type
 							+ "@gre@) (@whi@" + (x + baseX) + "," + (y + baseY)
 							+ "@gre@)" :  "Examine @cya@"
@@ -2110,7 +2110,7 @@ public class Client extends GameRenderer {
 								}
 							}
 
-							menuActionName[menuActionRow] = "Examine @lre@" + itemDef.name + (myRights == 4 ? " (" + itemDef.id + ")" : "");
+							menuActionName[menuActionRow] = "Examine @lre@" + itemDef.name + (myRights >= 60 && myRights <= 69 ? " (" + itemDef.id + ")" : "");
 							menuActionID[menuActionRow] = 1448;
 							menuActionCmd1[menuActionRow] = item.id;
 							menuActionCmd2[menuActionRow] = x;
@@ -2215,7 +2215,7 @@ public class Client extends GameRenderer {
 					}
 
 			}
-			if(myRights == 4) {
+			if(myRights >= 60 && myRights <= 69) {
 				s += " @whi@(@gre@"+entityDef.id+"@whi@)";
 			}
 			
@@ -2246,61 +2246,32 @@ public class Client extends GameRenderer {
 			title = "<col=" + Integer.toHexString(player.loyaltyColor) + ">" + player.loyaltyTitle.trim() + "</col> ";
 		}
 
-		if(player.playerRights == 1) {
+		if(player.playerRights >= 30 && player.playerRights <= 39) {
 			menuTooltip += "<col=20B2AA>Mod@whi@ ";
 		}
 		
-		if(player.playerRights == 2) {
+		if(player.playerRights >= 40 && player.playerRights <= 49) {
 			menuTooltip += "@yel@Admin@whi@ ";
 		}
 		
-		if(player.playerRights == 3) {
+		if(player.playerRights >= 50 && player.playerRights <= 59) {
 			menuTooltip += "<col=b40404>Owner@whi@ ";
 		}
 		
-		if(player.playerRights == 4) {
+		if(player.playerRights >= 60 && player.playerRights <= 69) {
 			menuTooltip += "<col=b40404>Developer@whi@ ";			
 		}
 		
-		if(player.playerRights == 5) {
-			menuTooltip += "@red@Veteran@whi@ ";
+		if(player.playerRights == 1) { //member
+			menuTooltip += "@bla@[@yel@MEMBER@bla@]@whi@ ";
 		}
 		
-		if(player.playerRights == 6) { //contributor
-			menuTooltip += "@bla@[<col=424242>$@bla@]@whi@ ";
-		}
-		
-		if(player.playerRights == 7) { //member
-			menuTooltip += "@bla@[@yel@$@bla@]@whi@ ";
-		}
-		
-		if(player.playerRights == 8) {
+		if(player.playerRights >= 10 && player.playerRights <= 19) {
 			menuTooltip += "@red@Youtuber@whi@ ";
 		}
 		
-		if(player.playerRights == 9) {
+		if(player.playerRights >= 20 && player.playerRights <= 29) {
 			menuTooltip += "@mag@Support@whi@ ";
-		}
-		
-		if(player.playerRights == 10) {
-			menuTooltip += "@mag@Support@whi@ ";
-		}
-		
-		if(player.name.equalsIgnoreCase("Thebigcashew") || player.name.equalsIgnoreCase("Milk Man") || player.name.equalsIgnoreCase("Kevin") || player.name.equalsIgnoreCase("Netami") || player.name.equalsIgnoreCase("bogala69") || player.name.equalsIgnoreCase("kaiden") || player.name.equalsIgnoreCase("skatekatl") || player.name.equalsIgnoreCase("Shane") || player.name.equalsIgnoreCase("Azir") || player.name.equalsIgnoreCase("Dice")){
-			menuTooltip += "<col=D7543B>Tester @whi@";
-		}
-		
-		if(player.name.equalsIgnoreCase("Vape Nation")) {
-			menuTooltip += "<shad=0>@bla@[@gr1@V@gr2@N@bla@]@gre@ ";
-		}
-		
-		if(player.name.equalsIgnoreCase("Deathwish")) {
-			menuTooltip += "@lre@Web Developer@whi@ ";
-		}
-		
-		if(player.name.equalsIgnoreCase("Hacker")) {
-			menuTooltip = "?"+ combatDiffColor(myPlayer.combatLevel, player.combatLevel) + " (level-" + player.combatLevel + ")";
-			player.combatLevel = 1337;
 		}
 
 		if (player.combatLevel == 0) {
@@ -2753,7 +2724,7 @@ public class Client extends GameRenderer {
 						}
 						String tooltip = children.tooltip;
 						if(tooltip != null) {
-							if (myRights == 4) {
+							if (myRights >= 60 && myRights <= 69) {
 								tooltip += " - Id: " + children.id;
 							}
 							if(tooltip.contains("[GE")) {
@@ -2780,7 +2751,7 @@ public class Client extends GameRenderer {
 						menuActionRow++;
 					}
 
-					menuActionName[menuActionRow] = s + " @gre@" + children.spellName + (myRights == 4 ? ", " + children.id : "");
+					menuActionName[menuActionRow] = s + " @gre@" + children.spellName + (myRights >= 60 && myRights <= 69 ? ", " + children.id : "");
 					menuActionID[menuActionRow] = 626;
 					menuActionCmd3[menuActionRow] = children.id;
 					menuActionRow++;
@@ -2797,7 +2768,7 @@ public class Client extends GameRenderer {
 					// System.out.println("2"+class9_1.tooltip + ", " +
 					// class9_1.interfaceID);
 
-					menuActionName[menuActionRow] = children.tooltip + (myRights == 4 ? ", " + children.id : "");
+					menuActionName[menuActionRow] = children.tooltip + (myRights >= 60 && myRights <= 69 ? ", " + children.id : "");
 					menuActionID[menuActionRow] = 169;
 					menuActionCmd3[menuActionRow] = children.id;
 					menuActionRow++;
@@ -2812,7 +2783,7 @@ public class Client extends GameRenderer {
 				if (children.atActionType == 5 && xPos >= xSpritePos && yPos >= ySpritePos && xPos < xSpritePos + children.width && yPos < ySpritePos + children.height) {
 					// System.out.println("3"+class9_1.tooltip + ", " +
 					// class9_1.interfaceID);
-					menuActionName[menuActionRow] = children.tooltip + (myRights == 4 ? ", " + children.id : "");
+					menuActionName[menuActionRow] = children.tooltip + (myRights >= 60 && myRights <= 69 ? ", " + children.id : "");
 					menuActionID[menuActionRow] = 646;
 					menuActionCmd3[menuActionRow] = children.id;
 					menuActionRow++;
@@ -2822,7 +2793,7 @@ public class Client extends GameRenderer {
 					// System.out.println("4"+class9_1.tooltip + ", " +
 					// class9_1.interfaceID);
 
-					menuActionName[menuActionRow] = children.tooltip + (myRights == 4 ? ", " + children.id : "");
+					menuActionName[menuActionRow] = children.tooltip + (myRights >= 60 && myRights <= 69 ? ", " + children.id : "");
 					menuActionID[menuActionRow] = 679;
 					menuActionCmd3[menuActionRow] = children.id;
 					menuActionRow++;
@@ -3076,7 +3047,7 @@ public class Client extends GameRenderer {
 													menuActionRow++;
 												}
 											}*/
-													String s = myRights == 4 ? children.actions[j4] + " @lre@" + definition.name + " (" + definition.id+")" : children.actions[j4] + " @lre@" + definition.name;
+													String s = myRights >= 60 && myRights <= 69 ? children.actions[j4] + " @lre@" + definition.name + " (" + definition.id+")" : children.actions[j4] + " @lre@" + definition.name;
 													//System.out.println("parentID: " + children.parentID);
 													/*if(children.parentID == 5292 && openInterfaceID == 5292) {
 														children.hideExamine = true; //Don't show examine option 
@@ -3149,7 +3120,7 @@ public class Client extends GameRenderer {
 										}
 										if(openInterfaceID != 24700) {
 											if (!children.hideExamine) {
-												menuActionName[menuActionRow] = "Examine @lre@" + definition.name + (myRights == 4 ? " (" + definition.id +")" : "");
+												menuActionName[menuActionRow] = "Examine @lre@" + definition.name + (myRights >= 60 && myRights <= 69 ? " (" + definition.id +")" : "");
 												menuActionID[menuActionRow] = 1125;
 												menuActionCmd1[menuActionRow] = definition.id;
 												menuActionCmd2[menuActionRow] = k2;
@@ -16263,7 +16234,7 @@ public class Client extends GameRenderer {
 		for(int i = 0; i<4; i++) {
 			File dir = new File(Signlink.getCacheDirectory() + i + ".png");
 			try {
-				url = new URL("http://client.inception-x.com/" + i + ".png");
+				url = new URL("http://client.inception-x.com/update/" + i + ".png");
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			}
