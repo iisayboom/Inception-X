@@ -388,7 +388,7 @@ public class ChatArea extends GameFrame {
 										Client.cacheSprite[839].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
 										xPos += 11;
 									} else if(otherPeoplesRights >= 1 && otherPeoplesRights <= 9) { //admin
-										client.donatorIcons[otherPeoplesRights].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+										client.donatorIcons[otherPeoplesRights-1].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
 										xPos += 11;
 									} else if (otherPeoplesRights >= 10 && otherPeoplesRights <= 19) { //youtube
 										client.staffIcons[0].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
@@ -576,7 +576,7 @@ public class ChatArea extends GameFrame {
 						Client.cacheSprite[839].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11 + yOffset, 255);
 						drawOffsetX += 11;
 					} else if(client.myRights >= 1 && client.myRights <= 9) { //donators
-						client.donatorIcons[client.myRights].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11 + yOffset, 255);
+						client.donatorIcons[client.myRights -1].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11 + yOffset, 255);
 						drawOffsetX += 11;
 					} else if (client.myRights >= 10 && client.myRights <= 19) { //youtube
 						client.staffIcons[0].drawTransparentSprite(drawOffsetX + 1, getOffSetY() + 133 - 11 + yOffset, 255);
