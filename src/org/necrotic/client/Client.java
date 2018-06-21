@@ -1225,6 +1225,7 @@ public class Client extends GameRenderer {
 	private int loginFailures;
 	private String loginMessage1;
 	private String loginMessage2;
+	private String loginMessage3;
 	private int loginScreenCursorPos;
 	private int loginScreenState;
 	private int loginState = -1;
@@ -1511,7 +1512,7 @@ public class Client extends GameRenderer {
 		consoleMessages = new String[50];
 		bigX = new int[4000];
 		bigY = new int[4000];
-		loginMessage1 = loginMessage2 = "";
+		loginMessage1 = loginMessage2 = loginMessage3 = "";
 	}
 
 	private void drawConsole() {
@@ -7525,7 +7526,7 @@ public class Client extends GameRenderer {
 			if (titleAlpha < 250) {
 				cacheSprite[449].drawTransparentSprite(centerX - cacheSprite[449].myWidth / 2, centerY - cacheSprite[449].myHeight / 2, titleAlpha);
 			} else {
-				if(loginMessage1.isEmpty() && loginMessage2.isEmpty()) {
+				if(loginMessage1.isEmpty() && loginMessage2.isEmpty() && loginMessage3.isEmpty()) {
 					handleHovers(false);
 					cacheSprite[449].drawAdvancedSprite(0, 0);
 					//cacheSprite[1177].drawAdvancedSprite(310, 115);
@@ -7591,6 +7592,7 @@ public class Client extends GameRenderer {
 					cacheSprite[1181].drawAdvancedSprite(215, 150);
 					chatTextDrawingArea.drawRegularText(true, 240, 16777215, loginMessage1, 242);
 					chatTextDrawingArea.drawRegularText(true, 240, 16777215, loginMessage2, 262);
+					chatTextDrawingArea.drawRegularText(true, 240, 16777215, loginMessage3, 282);
 				}
 				//normalText.drawText(0xffffff, "MouseX: "+mouseX+", MouseY: "+mouseY, 80, 200);
 			}
@@ -14109,7 +14111,7 @@ public class Client extends GameRenderer {
 				login(password, false, myUsername, this);
 				return;
 			} else if(backButtonHover) {
-				loginMessage1 = loginMessage2 = "";
+				loginMessage1 = loginMessage2 = loginMessage3 = "";
 				return;
 			}
 			for(int i = 0; i < accountHovers.length; i++) {
@@ -14151,7 +14153,7 @@ public class Client extends GameRenderer {
 				
 				if(!loginMessage1.isEmpty() || !loginMessage2.isEmpty()) {
 					if(keyChar == 32 || keyChar == 10 || keyChar == 8) {
-						loginMessage1 = loginMessage2 = "";
+						loginMessage1 = loginMessage2 = loginMessage3 = "";
 						loggingIn = false;
 					}
 					return;
@@ -14247,6 +14249,7 @@ public class Client extends GameRenderer {
 		if(username.toLowerCase().contains("admin") || username.toLowerCase().contains("mod") || username.toLowerCase().contains("dev") || username.toLowerCase().contains("owner")) {
 			loginMessage1 = "This username cannot be used.";
 			loginMessage2 = "Please pick another one.";
+			loginMessage2 = "";
 			return;
 		}
 		if(username.startsWith(" ") || username.startsWith("_")) {
@@ -14307,6 +14310,7 @@ public class Client extends GameRenderer {
 		} catch (IOException _ex) {
 			client.setLoginMessage1("Error connecting to server.");
 			client.setLoginMessage2("");
+			client.setLoginMessage3("");
 			loggedIn = loggingIn = false;
 		}
 	}
@@ -14420,18 +14424,21 @@ public class Client extends GameRenderer {
 					login(password, reconnecting, username, client);
 					return false;
 				} else {
-					client.setLoginMessage1("Invalid client UID specified.");
-					client.setLoginMessage2("Download the latest client.");
+					client.setLoginMessage1("Wrong client version !!");
+					client.setLoginMessage2("Please download our server launcher,");
+					client.setLoginMessage3("at www.inception-x.com");
 					return false;
 				}
 			} else {
 				client.setLoginMessage1("No response from server");
 				client.setLoginMessage2("Please try using a different world.");
+				client.setLoginMessage3("");
 				return false;
 			}
 		} else {
 			client.setLoginMessage1("Unexpected server response");
 			client.setLoginMessage2("Please try using a different world.");
+			client.setLoginMessage3("");
 			return false;
 		}
 	}
@@ -14444,7 +14451,7 @@ public class Client extends GameRenderer {
 		}
 		if (loginCode == 4) {
 			loginMessage1 = "This account has been banned!";
-			loginMessage2 = "Appeal on www.necrotic.org";
+			loginMessage2 = "Appeal on http://inception-x.com/forums/";
 			return false;
 		}
 		if (loginCode == 5) {
@@ -14671,7 +14678,7 @@ public class Client extends GameRenderer {
 			client.updateGameArea();
 		}
 		updateSettingsInterface();
-		loginMessage1 = loginMessage2 = "";
+		loginMessage1 = loginMessage2 = loginMessage3 = "";
 		loggingIn = false;
 	}
 
@@ -15464,7 +15471,7 @@ public class Client extends GameRenderer {
 		}
 		currentTarget = null;
 		loggingIn = false;
-		loginMessage1 = loginMessage2 = "";
+		loginMessage1 = loginMessage2 = loginMessage3 = "";
 		consoleOpen = false;
 		lootingBag = false;
 		setConnection(null);
@@ -17401,6 +17408,10 @@ public class Client extends GameRenderer {
 
 	public void setLoginMessage2(String loginMessage2) {
 		this.loginMessage2 = loginMessage2;
+	}
+
+	public void setLoginMessage3(String loginMessage3) {
+		this.loginMessage3 = loginMessage3;
 	}
 
 	public Connection getConnection() {
