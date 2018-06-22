@@ -45,7 +45,7 @@ public class Configuration {
 	public static boolean CONSTITUTION_ENABLED = false;
 	public static boolean NEW_HEALTH_BARS = true;
 	
-	public static boolean MONEY_POUCH_ENABLED = false;
+	public static boolean MONEY_POUCH_ENABLED = true;
 	public static boolean SMILIES_ENABLED = false;
 	public static boolean NOTIFICATIONS_ENABLED = false;
 	public static boolean HIGHLIGHT_USERNAME = true;
