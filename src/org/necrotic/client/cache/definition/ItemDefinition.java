@@ -310,6 +310,12 @@ public final class ItemDefinition {
                 itemDef.femaleWearId = 28230;
                 break;
 
+            case 4083:
+                itemDef.name = "Sled";
+                itemDef.groundActions = new String[]{null, null, "Take", null, null};
+                itemDef.actions = new String[]{null, "Ride", null, null, "Drop"};
+                break;
+
             case 19906:
                 itemDef.name = "Trident of the seas";
                 itemDef.modelZoom = 2755;
@@ -1297,7 +1303,7 @@ public final class ItemDefinition {
                 itemDef.modelRotation2 = 192;
                 break;
             case 6769:
-                itemDef.name = "$5 Scroll";
+                itemDef.name = "$250 Scroll";
                 itemDef.actions = new String[5];
                 itemDef.actions[4] = "Drop";
                 itemDef.actions[0] = "Claim";
@@ -1399,7 +1405,7 @@ public final class ItemDefinition {
             case 995:
                 itemDef.name = "Coins";
                 itemDef.actions = new String[5];
-                itemDef.actions[4] = "Drop";
+                itemDef.actions = new String[]{null, null, null, "Store in pouch", "Drop", null};
                 break;
             case 17291:
                 itemDef.name = "Blood necklace";

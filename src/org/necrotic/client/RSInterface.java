@@ -2546,9 +2546,7 @@ public class RSInterface {
 		}
 	}
 
-	public static void addHoverButton(int i, String imageName, int j,
-			int width, int height, String text, int contentType, int hoverOver,
-			int aT) {// hoverable
+	public static void addHoverButton(int i, String imageName, int j, int width, int height, String text, int contentType, int hoverOver, int aT) {// hoverable
 		// button
 		RSInterface tab = addTabInterface(i);
 		tab.id = i;

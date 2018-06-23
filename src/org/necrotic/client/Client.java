@@ -10631,10 +10631,10 @@ public class Client extends GameRenderer {
 			drawConsole();
 		}
 		
-	/**	if (loggedIn && Configuration.MONEY_POUCH_ENABLED) {
+		if (loggedIn && Configuration.MONEY_POUCH_ENABLED) {
 			mapArea.displayMoneyPouch(this);
 		}
-**/
+
 		if (PlayerHandler.showXP && loggedIn) {
 			mapArea.displayXPCounter(this);
 		}
@@ -12454,7 +12454,7 @@ public class Client extends GameRenderer {
 		}
 	}
 
-	public final String methodR(int i) {
+	public final String methodR(long i) {
 		if (i >= 0 && i < 10000) {
 			return String.valueOf(i);
 		}
@@ -12465,6 +12465,10 @@ public class Client extends GameRenderer {
 
 		if (i >= 10000000 && i <= Integer.MAX_VALUE) {
 			return i / 1000000 + "M";
+		}
+
+		if (i >= 1000000000 && i <= Long.MAX_VALUE) {
+			return i / 1000000000 + "B";
 		}
 
 		if (i > Integer.MAX_VALUE) {
@@ -14425,7 +14429,7 @@ public class Client extends GameRenderer {
 					return false;
 				} else {
 					client.setLoginMessage1("Wrong client version !!");
-					client.setLoginMessage2("Please download our server launcher,");
+					client.setLoginMessage2("Restart client or download our server launcher,");
 					client.setLoginMessage3("at www.inception-x.com");
 					return false;
 				}
