@@ -22,8 +22,8 @@ public class Configuration {
 	/** MAIN CONSTANTS **/
 	public final static String CLIENT_NAME = "Inception X";
 	public final static int CLIENT_VERSION = 55;
-	public final static String CACHE_DIRECTORY_NAME = "NecroticCache5"; //Cache folder name
-	public static final String SETTINGS_DIRECTORY_NAME = "NecroticSettings";
+	public final static String CACHE_DIRECTORY_NAME = "InceptionX"; //Cache folder name
+	public static final String SETTINGS_DIRECTORY_NAME = "InceptionXSettings";
 	
 	public final static boolean JAGCACHED_ENABLED = false;
 	public final static String JAGCACHED_HOST  = "";
@@ -78,9 +78,9 @@ public class Configuration {
 		//return "25.17.86.12"; // your local server's IP
 		//return "25.28.57.167"; //niels laptop
 		//return "25.17.86.12"; //niels desktop
-		//return "localhost";
+		return "localhost";
 		//return "25.28.57.167";
-		return "144.217.84.225";
+		//return "144.217.84.225";
 	}
 
 }

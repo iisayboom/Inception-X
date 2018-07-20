@@ -360,6 +360,8 @@ public final class ItemDefinition {
                 itemDef.actions = new String[]{null, null, null, null, "Drop"};
                 itemDef.modelID = 3563;
                 break;
+
+
             case 22008:
                 itemDef.actions = new String[5];
                 itemDef.actions[1] = "Wield";
@@ -422,6 +424,8 @@ public final class ItemDefinition {
                 itemDef.femaleWearId = 5409;
                 itemDef.modelZoom = 840;
                 break;
+
+
             case 247:
                 itemDef.actions = new String[]{null, null, null, null, null};
                 break;
@@ -1301,6 +1305,12 @@ public final class ItemDefinition {
                 itemDef.modelOffsetX = 0;
                 itemDef.modelRotation1 = 339;
                 itemDef.modelRotation2 = 192;
+                break;
+            case 13566:
+                itemDef.name = "Ring Of Inception-X";
+                itemDef.actions = new String[5];
+                itemDef.actions[1] = "Wear";
+                itemDef.actions[3] = "Check npc kill log";
                 break;
             case 6769:
                 itemDef.name = "$250 Scroll";
@@ -2253,7 +2263,7 @@ public final class ItemDefinition {
 
             case 22040:
                 itemDef.modelID = 2543;//62693;
-                itemDef.name = "Necrotic book";
+                itemDef.name = "Inception-X book";
                 itemDef.modelZoom = 760;//800;
                 itemDef.modelRotation1 = 244;//532;
                 itemDef.modelRotation2 = 116;//14;
@@ -2388,6 +2398,13 @@ public final class ItemDefinition {
                 itemDef.actions = new String[5];
                 itemDef.actions[1] = "Wear";
                 //itemDef.actions[2] = "Check-charges";
+                itemDef.actions[4] = "Drop";
+                break;
+
+            case 607:
+                itemDef.name = "Dicer Rank";
+                itemDef.actions = new String[5];
+                itemDef.actions[0] = "Read";
                 itemDef.actions[4] = "Drop";
                 break;
 
