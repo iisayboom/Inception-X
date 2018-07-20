@@ -1716,6 +1716,8 @@ public class CustomInterfaces extends RSInterface {
 		interfaceCache[5382].width = 10;
 		interfaceCache[5382].invSpritePadX = 12;
 		interfaceCache[5382].height = 35;
+		interfaceCache[5382].inv = new int[1000];
+		interfaceCache[5382].invStackSizes = new int[1000];
 		setBounds(5385, 0, 74, 2, rsinterface);
 		addSpriteLoader(5293, 713);
 		setBounds(5293, 13, 13, 0, rsinterface);
@@ -1725,19 +1727,14 @@ public class CustomInterfaces extends RSInterface {
 
 		setBounds(5384, 476, 16, 3, rsinterface);
 		setBounds(5380, 476, 16, 4, rsinterface);
-		//addButton(5294, 3, "Interfaces/BANK/BANK", "Click here to handle Bank PIN");
 		addHoverButtonWSpriteLoader(5294, 716, 114, 25, "Manage Bank PIN", -1, 22045, 1);
 		addHoveredImageWSpriteLoader(22045, 717, 114, 25, 22046);
 
 		setBounds(5294, 110, 285, 5, rsinterface);
 		setBounds(22045, 110, 285, 37, rsinterface);
-		//(27651, "CUSTOM", "Equipment", 1, 40, 40, "Show Equipment Screen", 0, 27652, 1);
-		//addHoverButton(22000, "Interfaces/BANK/BANK", 5, 35, 25, "Deposit Money-Pouch", 0, 22001, 4);
-		//addHoveredButton(22001, "Interfaces/BANK/BANK", 8 ,35, 25, 22002);
 		addHoverButtonWSpriteLoader(27009, 718, 35, 25, "Deposit Money-Pouch", -1, 27010, 1);
 		addHoveredImageWSpriteLoader(27010, 719, 35, 25, 27011);
 
-		//addBankHover(22000, 4, 22001, 5, 8, "Interfaces/BANK/BANK", 35, 25, 304, 1, "Deposit Money-Pouch", 22002, 7, 6, "Interfaces/BANK/BANK", 22003, "Switch to insert items \nmode", "Switch to swap items \nmode.", 12, 20);
 		setBounds(27009, 25, 285, 6, rsinterface);
 		setBounds(27010, 25, 285, 7, rsinterface);
 		addBankHover(22004, 4, 22005, 13, 15, "Interfaces/BANK/BANK", 35, 25, 117, 1, "Search", 22006, 14, 16, "Interfaces/BANK/BANK", 22007, "Click here to search your \nbank", "Click here to search your \nbank", 12, 20, 720, 721);
@@ -1747,15 +1744,11 @@ public class CustomInterfaces extends RSInterface {
 		addBankHover(22008, 4, 22009, 9, 11, "Interfaces/BANK/BANK", 35, 25, 115, 1, "Withdraw as Note", 22010, 10, 12, "Interfaces/BANK/BANK", 22011, "Switch to note withdrawal \nmode", "Switch to item withdrawal \nmode", 12, 20, 722, 723);
 		setBounds(22008, 285, 285, 10, rsinterface);
 		setBounds(22009, 225, 225, 11, rsinterface);
-		//addBankHover1(22012, 5, 22013, 17, "Interfaces/BANK/BANK", 35, 25, "Deposit carried tems", 22014, 18, "Interfaces/BANK/BANK", 22015, "Empty your backpack into\nyour bank", 0, 20);
-
 		addHoverButtonWSpriteLoader(22012, 724, 35, 25, "Deposit carried items", -1, 22013, 1);
 		addHoveredImageWSpriteLoader(22013, 725, 35, 25, 22014);
 
 		setBounds(22012, 375, 285, 12, rsinterface);
 		setBounds(22013, 375, 285, 13, rsinterface);
-		//addBankHover1(22016, 5, 22017, 19, "Interfaces/BANK/BANK", 35, 25, "Deposit worn items", 22018, 20, "Interfaces/BANK/BANK", 22019, "Empty the items your are\nwearing into your bank", 0, 20);
-
 		addHoverButtonWSpriteLoader(27005, 726, 35, 25, "Deposit worn items", -1, 27006, 1);
 		addHoveredImageWSpriteLoader(27006, 727, 35, 25, 27007);
 
