@@ -459,26 +459,13 @@ public class ChatArea extends GameFrame {
 									} else if(otherPeoplesRights == 71) {
 										Client.cacheSprite[839].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
 										xPos += 11;
-									} else if(otherPeoplesRights >= 1 && otherPeoplesRights <= 9) { //admin
-										client.donatorIcons[otherPeoplesRights].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+									} else if(otherPeoplesRights >= 1 && otherPeoplesRights <= 9) { //donator
+										client.donatorIcons[otherPeoplesRights-1].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
 										xPos += 11;
-									} else if (otherPeoplesRights >= 10 && otherPeoplesRights <= 19) { //youtube
-										client.staffIcons[0].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
-										xPos += 11;
-									} else if(otherPeoplesRights >= 20 && otherPeoplesRights <= 29) { //support
-										client.staffIcons[1].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
-										xPos += 11;
-									} else if(otherPeoplesRights >= 30 && otherPeoplesRights <= 39) { //mod
-										client.staffIcons[2].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
-										xPos += 11;
-									} else if(otherPeoplesRights >= 40 && otherPeoplesRights <= 49) { //admin
-										client.staffIcons[3].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
-										xPos += 11;
-									} else if(otherPeoplesRights >= 50 && otherPeoplesRights <= 59) { //owner
-										client.staffIcons[4].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
-										xPos += 11;
-									} else if(otherPeoplesRights >= 60 && otherPeoplesRights <= 69) { //developer
-										client.staffIcons[5].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
+									} else if (otherPeoplesRights >= 10) { //youtube
+										String strippedRights = "";
+										strippedRights += otherPeoplesRights/10;
+										client.staffIcons[Integer.parseInt(strippedRights) - 1].drawTransparentSprite(xPos + 1 + getOffSetX(), positionY - 11 + getOffSetY(), 255);
 										xPos += 11;
 									}
 

@@ -37,11 +37,15 @@ public class CustomObjects {
             {1864, 2382, 4715, 0, 1}, //RoT6 Barrier
             {1864, 2384, 4715, 0, 1}, //RoT6 Barrier
 
+        //farming test
+            {7843, 2814, 3463, 0, 0},
 
             {409, 3239, 3608, 0, 0}, //altar at chaos
             
             {2403, 3077, 3499, 0, 1},
             {6551, 3077, 3500, 0, 0},
+            //obelisk at home
+            {28717, 3091, 3500, 0, 0},
 /*
             {28295, 3674, 2981, 0, 1}, //Christmas Snowman
 			{41745, 2786, 3861, 0, 3}, //sleigh

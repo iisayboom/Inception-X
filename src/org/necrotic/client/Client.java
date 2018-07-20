@@ -7912,14 +7912,10 @@ public class Client extends GameRenderer {
 							donatorIcons[rights - 11].drawTransparentSprite(xOffset, yOffset - 12, 255);
 							xOffset += 11;
 						} else if(rights >= 1 && rights <= 10) {
-							staffIcons[rights].drawTransparentSprite(xOffset, yOffset - 12, 255);
+							String strippedRights = "";
+							strippedRights += rights / 10;
+							staffIcons[Integer.parseInt(strippedRights) - 1].drawTransparentSprite(xOffset, yOffset - 12, 255);
 							xOffset += 11;
-						} else if((rights >= 19 && rights <= 26) || rights == 35) {
-							staffIcons[13].drawTransparentSprite(xOffset, yOffset - 12, 255);
-							xOffset += 10;
-						} else if(rights > 26 || rights == 36) {
-							staffIcons[12].drawTransparentSprite(xOffset, yOffset - 12, 255);
-							xOffset += 10;
 						}
 					}
 
@@ -13162,12 +13158,12 @@ public class Client extends GameRenderer {
 					}
 					if (friendsNodeIDs[k24] != i18) {
 						friendsNodeIDs[k24] = i18;
-						/*if (i18 >= 2) {
+						if (i18 >= 2) {
 							pushMessage(s7 + " has logged in.", 5, "");
 						}
 						if (i18 <= 1) {
 							pushMessage(s7 + " has logged out.", 5, "");
-						}*/
+						}
 					}
 					s7 = null;
 

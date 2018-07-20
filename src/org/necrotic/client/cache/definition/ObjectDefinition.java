@@ -575,6 +575,11 @@ public final class ObjectDefinition {
             definition.actions[1] = "Renew Points";
             definition.name = "Summoning Obelisk";
             break;
+        case 28717:
+            definition.actions = new String[5];
+            definition.actions[1] = "Renew Points";
+            definition.name = "Summoning Obelisk";
+            break;
         case 4306:
             definition.actions = new String[5];
             definition.actions[0] = "Use";

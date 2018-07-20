@@ -514,7 +514,7 @@ public class CustomInterfaces extends RSInterface {
 		addSpriteLoader(57001, 655);
 		addText(57002, "Players Online", 0xff9933, true, true, -1, tda, 2);
 		addText(57003, "", 0xff9933, true, true, -1, tda, 1);
-		addText(57007, "Necrotic", 0xff9933, true, true, -1, tda, 0);
+		addText(57007, "Inception-X", 0xff9933, true, true, -1, tda, 0);
 		addText(57008, "", 0xff9933, true, true, -1, tda, 3);
 		addText(57009, "", 0xff9933, false, true, -1, tda, 0);
 		addText(57010, "", 0xff9933, false, true, -1, tda, 0);
@@ -812,7 +812,7 @@ public class CustomInterfaces extends RSInterface {
 		addHoveredImageWSpriteLoader(49003, 653, 17, 17, 49004);
 		
 		//text
-		addText(49005, "Necrotic Teleports", tda, 2, 0xFFFFFF);
+		addText(49005, "Inception-X Teleports", tda, 2, 0xFFFFFF);
 		addText(49050, "Training", tda, 2, 0xFFFFFF);
 		addText(49007, "Skilling", tda, 2, 0xFFFFFF);
 		addText(49008, "Dungeons", tda, 2, 0xFFFFFF);
