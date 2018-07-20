@@ -30,6 +30,8 @@ import org.necrotic.client.graphics.Sprite;
 import org.necrotic.client.graphics.gameframe.GameFrame;
 import org.necrotic.client.graphics.gameframe.GameFrame.ScreenMode;
 
+import javax.swing.*;
+
 public class GameRenderer extends Applet implements Runnable, MouseListener, MouseMotionListener, KeyListener, FocusListener, WindowListener, MouseWheelListener {
 
 	private static final long serialVersionUID = 1L;
@@ -823,7 +825,7 @@ public class GameRenderer extends Applet implements Runnable, MouseListener, Mou
 		}
 		// wheel
 
-		if (mouseevent.isMetaDown()) {
+		if (SwingUtilities.isRightMouseButton(mouseevent)) {
 			clickMode1 = 2;
 			setClickMode2(2);
 		} else {
