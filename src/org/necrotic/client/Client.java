@@ -2350,7 +2350,7 @@ public class Client extends GameRenderer {
 
 		for (int i1 = 0; i1 < menuActionRow; i1++) {
 			if (menuActionID[i1] == 516) {
-				menuActionName[i1] = "Walk here @whi@" + menuTooltip;
+				menuActionName[i1] = "Walk here df @whi@" + menuTooltip;
 				return;
 			}
 		}
@@ -10079,6 +10079,9 @@ public class Client extends GameRenderer {
 						for (Item item = (Item) node.getFirst(); item != null; item = (Item) node.getNext()) {
 							ItemDefinition itemDef = ItemDefinition.get(item.id);
 							calcEntityScreenPos((x << 7) + 64, 64, (y << 7) + 64);
+							if(spriteDrawX == -1 || spriteDrawY == -1){
+							    return;
+                            }
 							newSmallFont.drawCenteredString(itemDef.name + (item.amount > 1 ? " (" + intToKOrMil(item.amount) + ")" : ""), spriteDrawX, spriteDrawY - offset, 0xffffff, 1);
 							offset += 12;
 						}

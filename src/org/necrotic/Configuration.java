@@ -1,11 +1,5 @@
 package org.necrotic;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.InetAddress;
-
-import org.necrotic.client.tools.Misc;
-
 /**
  * The client's features can easily be toggled/changed here.
  * @author Gabriel Hannason
