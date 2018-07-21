@@ -126,6 +126,10 @@ public class RSFontSystem extends DrawingArea {
         }
     }
 
+    public int getBaseCharacterHeight() {
+        return baseCharacterHeight;
+    }
+
     private static void createTransparentCharacterPixels(int[] is, byte[] is_0_, int i, int i_1_, int i_2_, int i_3_, int i_4_, int i_5_, int i_6_, int i_7_) {
         i = ((i & 0xff00ff) * i_7_ & ~0xff00ff) + ((i & 0xff00) * i_7_ & 0xff0000) >> 8;
         i_7_ = 256 - i_7_;
@@ -298,6 +302,13 @@ public class RSFontSystem extends DrawingArea {
                 characterScreenWidths[32] = characterScreenWidths[105];
             }
         } catch (Exception e) {
+        }
+    }
+
+    public void drawBasicString(String string, int drawX, int drawY, int color, int shadow) {
+        if (string != null) {
+            setColorAndShadow(color, shadow);
+            drawBasicString(string, drawX, drawY, false);
         }
     }
 

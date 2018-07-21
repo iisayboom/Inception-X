@@ -350,6 +350,9 @@ public class TabArea extends GameFrame {
 					client.drawMenu();
 				}
 			}
+			if(!client.menuOpen && screenMode == ScreenMode.FIXED){
+				client.drawTooltipHover(519, 168);
+			}
 			if (screenMode == ScreenMode.FIXED) {
 				if (client.tabAreaIP != null) {
 					client.tabAreaIP.drawGraphics(getyPos(), client.graphics, getxPos());

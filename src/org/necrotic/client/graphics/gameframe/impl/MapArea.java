@@ -634,6 +634,10 @@ public class MapArea extends GameFrame {
                 client.drawMenu();
             }
 
+            if(!client.menuOpen && screenMode == ScreenMode.FIXED){
+                client.drawTooltipHover(516, 0);
+            }
+
         }
         client.gameScreenIP.initDrawingArea();
 
